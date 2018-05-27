@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+
+<body>
+<nav class="navbar is-dark level" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item">
+            <img th:src="@{/img/logo.png}" src="../static/img/logo.png" alt="logo.png"/>
+            <span class="title has-text-white has-text-weight-light">&nbsp;Git
+                    <span class="has-text-weight-semibold primary-font">Forge</span>
+                </span>
+        </a>
+    </div>
+
+    <div class="navbar-start">
+
+    </div>
+
+    <div class="navbar-end">
+
+        <a href="#" class="navbar-item">
+            <p>
+                <span class="has-text-weight-bold">Login</span> or
+                <span class="has-text-weight-bold">Signup</span>
+            </p>
+        </a>
+
+    </div>
+
+    </div>
+</nav>
+
+<section class="hero is-fullheight"
+         style="background-image: url('../static/img/bg.png');background-size: cover;margin-top: -1.5rem;">
+    <div class="hero-body">
+        <div class="container">
+
+            <div class="columns">
+                <div class="column">
+                    <h1 class="title is-size-1">
+                        Open source Git Hosting</h1>
+
+                    <h2 class="subtitle is-size-3">
+                        Built with love by developers, for developers</h2>
+
+                </div>
+                <div class="column" style="padding-left: 2rem;padding-right: 2rem;">
+                    <div class="box">
+                        <form>
+                            <div class="field">
+                                <label class="label">Username</label>
+                                <p class="control has-icons-left">
+                                    <input class="input" type="text" placeholder="Pick a username"/>
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Email Address</label>
+                                <p class="control has-icons-left">
+                                    <input class="input" type="email" placeholder="you@example.com"/>
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <p class="control has-icons-left">
+                                    <input class="input" type="password" placeholder="Choose your password"/>
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    <span class="help">Use at least one letter, one numeral, and seven characters.</span>
+                                </p>
+                            </div>
+
+                            <button class="button is-block is-success is-fullwidth">Sign up to GitForge</button>
+
+                            <div class="has-text-centered" style="padding-left: 4rem;padding-right: 4rem;">
+                                <p class="help">By clicking "Sign up to GitForge you accept our
+                                    <a href="#">terms of service
+                                    </a> and
+                                    <a href="#">privacy agreement</a>.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>

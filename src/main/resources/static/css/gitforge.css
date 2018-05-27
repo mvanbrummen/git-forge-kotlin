@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.is-primary {
+  background-color: #ff8026 !important;
+}
+
+.primary-font {
+  color: #ff8026;
+}
+
+#nprogress .bar {
+  background: #ff8026 !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #ff8026, 0 0 5px #ff8026 !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #ff8026 !important;
+  border-left-color: #ff8026 !important;
+}
+
+.readme-contents {
+  padding: 20px 20px 20px 20px;
+}
+
+.code-td {
+  padding: 0 !important;
+}
+
+.repo-input {
+  width: 50px !important;
+}
+
+.repo-controls .level-item {
+  padding-right: 10px !important;
+}
+
+.repo-activity-bar a {
+  color: #4a4a4a !important;
+}
+
+.repo-activity-bar a:hover {
+  color: #3273dc !important;
+}
+
+.commit-hash-input {
+  width: 100px !important;
+}
+
+.table-avatar {
+  margin-right: 15px;
+}
+
+.dropdown-subtitle {
+  margin-left: 5px;
+}
+
+.table-hoverable tr:hover td {
+  background-color: #f6fbff !important;
+  border-top: 1px solid #acd7f9 !important;
+  border-bottom: 1px solid #acd7f9 !important;
+}
+
+.table-hoverable a {
+  color: #4a4a4a;
+}
+
+.table-hoverable a:hover {
+  text-decoration: underline;
+}
