@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="column is-6 is-offset-3">
+        <div class="has-text-centered" style="margin-bottom: 1rem;">
+            <a href="/about">
+                <h3 class="title has-text-grey is-size-1">Git<span style="color: #ff8026">Forge</span></h3>
+            </a>
+            <h3 class="subtitle has-text-grey">Login to continue</h3>
+        </div>
+
+
+        <div class="box">
+            <form>
+                <div class="field">
+                    <label class="label">Username</label>
+                    <p class="control has-icons-left">
+                        <input class="input" type="text" placeholder="Username" name="username"/>
+                        <span class="icon is-small is-left">
+                                <i class="fa fa-user"></i>
+                            </span>
+                    </p>
+
+                </div>
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <p class="control has-icons-left">
+                        <input class="input" type="password" placeholder="Password" name="password"/>
+                        <span class="icon is-small is-left">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                    </p>
+                </div>
+
+                <button class="button is-block is-success is-fullwidth">Login</button>
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox has-text-grey">
+                            <input type="checkbox"/>
+                            &nbsp; Remember me
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div style="margin-top: 1rem;">
+            <a href="/signup">Need an account?</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
