@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+
+<body>
+<nav class="navbar is-dark level" aria-label="main navigation">
+
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item">
+            <img th:src="@{/img/logo.png}" src="../static/img/logo.png" alt="logo.png"/>
+            <span class="title has-text-white has-text-weight-light">&nbsp;Git<span
+                    class="has-text-weight-semibold primary-font">Forge</span>
+                </span>
+        </a>
+    </div>
+
+    <div class="navbar-start">
+
+    </div>
+
+    <div class="navbar-end">
+
+        <div class="navbar-item">
+            <div class="field has-addons">
+                <p class="control">
+                    <input class="input" type="text" placeholder="Find a repository"/>
+                </p>
+                <p class="control">
+                    <button class="button is-primary">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </p>
+            </div>
+        </div>
+
+        <div class="navbar-item has-dropdown">
+            <a class="navbar-link"
+               onClick={this.handleClickPlus}>
+                <i class="fa fa-plus-square"></i>
+            </a>
+
+            <div class="navbar-dropdown is-right">
+                <Link to="/repos/new" class="navbar-item">
+                Create Repository
+                </Link>
+
+            </div>
+        </div>
+
+
+        <div class="navbar-item has-dropdown">
+            <a class="navbar-link" onClick={this.handleClickProfile}>
+                <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
+                     alt="avatar.png"/>
+            </a>
+
+            <div class="navbar-dropdown is-right">
+
+
+                <div class="navbar-item">
+                    Logged in as mvanbrummen
+                </div>
+
+
+                <a class="navbar-item">
+                    Profile
+                </a>
+                <a class="navbar-item">
+                    Settings
+                </a>
+
+                <hr class="navbar-divider"/>
+                <a class="navbar-item">
+                    Logout
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <h3 class="has-text-grey-dark title is-size-5">Repositories</h3>
+            <hr/>
+            <div class="tabs is-boxed">
+                <ul>
+                    <li class="is-active"><a>All</a></li>
+                    <li><a>Personal</a></li>
+                </ul>
+            </div>
+
+            <table class="table is-fullwidth">
+                <tbody>
+
+                <tr>
+                    <td>
+                        <i class="fa fa-book"></i>
+                        <a href="#"> <strong>mvanbrummen / git-forge</strong></a> <span
+                            class="tag is-light">master</span>
+                        <p class="has-text-grey-dark is-size-6">Git hosting</p>
+                    </td>
+                    <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span> <i
+                            class="fa fa-globe"></i>
+                        <p class="has-text-grey-dark is-size-7">modified today</p></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr/>
+
+            <nav class="pagination is-centered is-small" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li><a class="pagination-link" aria-label="Goto page 45">8</a></li>
+                    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">9</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 47">10</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li><a class="pagination-link" aria-label="Goto page 86">13</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
