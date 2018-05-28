@@ -3,9 +3,5 @@ spring:
     url: jdbc:postgresql://localhost:5432/gitforge
     username: mvanbrummen
     password: ""
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
+  thymeleaf:
+    cache: false

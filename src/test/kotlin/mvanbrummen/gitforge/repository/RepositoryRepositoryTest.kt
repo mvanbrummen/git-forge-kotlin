@@ -15,9 +15,17 @@ class RepositoryRepositoryTest {
     lateinit var repositoryRepository: RepositoryRepository
 
     @Test
-    fun testGet() {
-        val result = repositoryRepository.findByAccount_Username("mvanbrummen")
+    fun `get account by username should return list of repos`() {
+        val res = repositoryRepository.findByRepositoriesByAccount("mvanbrummen")
 
-        assertThat(result).isNotNull
+        assertThat(res).isNotNull
+        assertThat(res).isNotEmpty
+    }
+
+    @Test
+    fun `get account by unknown username should return empty list`() {
+        val res = repositoryRepository.findByRepositoriesByAccount("unknown")
+
+        assertThat(res).isEmpty()
     }
 }

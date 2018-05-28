@@ -106,17 +106,17 @@
             <table class="table is-fullwidth">
                 <tbody>
 
-                <tr>
-                    <td>
-                        <i class="fa fa-book"></i>
-                        <a href="#"> <strong>mvanbrummen / git-forge</strong></a> <span
-                            class="tag is-light">master</span>
-                        <p class="has-text-grey-dark is-size-6">Git hosting</p>
-                    </td>
-                    <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span> <i
-                            class="fa fa-globe"></i>
-                        <p class="has-text-grey-dark is-size-7">modified today</p></td>
-                </tr>
+                    <tr th:each="repo : ${repos}">
+                        <td>
+                            <i class="fa fa-book"></i>
+                            <a href="#"> <strong th:text="${ 'mvanbrummen / ' + repo.name }"></strong></a> <span
+                                class="tag is-light">master</span>
+                            <p class="has-text-grey-dark is-size-6" th:text="${repo.description}"></p>
+                        </td>
+                        <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span> <i
+                                class="fa fa-globe"></i>
+                            <p class="has-text-grey-dark is-size-7">modified today</p></td>
+                    </tr>
                 </tbody>
             </table>
 

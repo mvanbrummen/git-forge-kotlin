@@ -1,11 +1,20 @@
 package mvanbrummen.gitforge.repository
 
-import org.springframework.data.repository.CrudRepository
-import org.springframework.stereotype.Repository
-import java.util.*
+import org.jooq.DSLContext
+import org.jooq.generated.public_.Tables.ACCOUNT
+import org.jooq.generated.public_.Tables.REPOSITORY
+import org.jooq.generated.public_.tables.pojos.Repository
+import org.springframework.stereotype.Service
 
-@Repository
-interface RepositoryRepository : CrudRepository<mvanbrummen.gitforge.domain.Repository, UUID> {
 
-    fun findByAccount_Username(username: String): List<mvanbrummen.gitforge.domain.Repository>
+@Service
+class RepositoryRepository(private val dsl: DSLContext) {
+
+    fun findByRepositoriesByAccount(username: String): List<Repository> {
+        return dsl.select()
+                .from(REPOSITORY)
+                .join(ACCOUNT).on(REPOSITORY.ACCOUNT_ID.eq(ACCOUNT.ID))
+                .where(ACCOUNT.USERNAME.eq(username))
+                .fetchInto(Repository::class.java)
+    }
 }
