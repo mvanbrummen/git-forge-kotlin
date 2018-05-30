@@ -1,6 +1,7 @@
 package mvanbrummen.gitforge.repository
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,6 +16,7 @@ class RepositoryRepositoryTest {
     lateinit var repositoryRepository: RepositoryRepository
 
     @Test
+    @Ignore
     fun `get account by username should return list of repos`() {
         val res = repositoryRepository.findByRepositoriesByAccount("mvanbrummen")
 

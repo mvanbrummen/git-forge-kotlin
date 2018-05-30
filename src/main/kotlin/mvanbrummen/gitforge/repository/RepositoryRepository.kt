@@ -1,11 +1,11 @@
 package mvanbrummen.gitforge.repository
 
 import org.jooq.DSLContext
-import org.jooq.generated.public_.Tables.ACCOUNT
-import org.jooq.generated.public_.Tables.REPOSITORY
-import org.jooq.generated.public_.tables.pojos.Repository
-import org.springframework.stereotype.Service
+import org.jooq.generated.Tables.ACCOUNT
+import org.jooq.generated.Tables.REPOSITORY
+import org.jooq.generated.tables.pojos.Repository
 
+import org.springframework.stereotype.Service
 
 @Service
 class RepositoryRepository(private val dsl: DSLContext) {

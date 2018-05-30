@@ -1,7 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/gitforge
+    url: jdbc:postgresql://localhost:5432/kgitforge?currentSchema=gitforge
     username: mvanbrummen
     password: ""
   thymeleaf:
     cache: false
+  flyway:
+    schemas: gitforge

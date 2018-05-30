@@ -1,7 +1,7 @@
 package mvanbrummen.gitforge.service
 
 import mvanbrummen.gitforge.repository.RepositoryRepository
-import org.jooq.generated.public_.tables.pojos.Repository
+import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
 
 @Service
