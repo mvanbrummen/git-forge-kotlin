@@ -17,4 +17,10 @@ class RepositoryRepository(private val dsl: DSLContext) {
                 .where(ACCOUNT.USERNAME.eq(username))
                 .fetchInto(Repository::class.java)
     }
+
+    fun saveRepository(repository: Repository): Int {
+        return dsl.insertInto(REPOSITORY)
+                .values(repository.id, repository.accountId, repository.name, repository.description)
+                .execute()
+    }
 }
