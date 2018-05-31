@@ -1,9 +1,8 @@
 package mvanbrummen.gitforge.service
 
 import mvanbrummen.gitforge.repository.UserRepository
-import org.jooq.generated.tables.pojos.Account
-
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -19,33 +18,16 @@ class UserService(
     override fun loadUserByUsername(username: String): UserDetails {
         val user = userRepository.getUser(username) ?: throw UsernameNotFoundException(username)
 
-        return UserPrincipal(user)
+        return User(user.username, user.password, listOf(GrantedAuthority { "USER" }))
     }
 
-    fun createUser(username: String, emailAddress: String, password: String): UserPrincipal {
+    fun createUser(username: String, emailAddress: String, password: String): User {
         userRepository.saveUser(UUID.randomUUID(), username, emailAddress,
                 passwordEncoder.encode(password))
 
-        return UserPrincipal(userRepository.getUser(username) ?: throw RuntimeException())
+        val user = userRepository.getUser(username) ?: throw RuntimeException()
+
+        return User(user.username, user.password, listOf(GrantedAuthority { "USER" }))
     }
 }
 
-class UserPrincipal(private val user: Account) : UserDetails {
-
-    override fun getAuthorities(): List<GrantedAuthority> {
-        return listOf(GrantedAuthority { "USER" })
-    }
-
-    override fun isEnabled(): Boolean = true
-
-    override fun getUsername(): String = user.username
-
-    override fun isCredentialsNonExpired(): Boolean = true
-
-    override fun getPassword(): String = user.password
-
-    override fun isAccountNonExpired(): Boolean = true
-
-    override fun isAccountNonLocked(): Boolean = true
-
-}

@@ -10,7 +10,6 @@
           th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
     <title>GitForge</title>
 </head>
-
 <body>
 <nav class="navbar is-dark level" aria-label="main navigation">
 
@@ -43,22 +42,21 @@
         </div>
 
         <div class="navbar-item has-dropdown">
-            <a class="navbar-link"
-               onClick={this.handleClickPlus}>
+            <a class="navbar-link">
                 <i class="fa fa-plus-square"></i>
             </a>
 
             <div class="navbar-dropdown is-right">
-                <Link to="/repos/new" class="navbar-item">
-                Create Repository
-                </Link>
+                <a href="/" class="navbar-item">
+                    Create Repository
+                </a>
 
             </div>
         </div>
 
 
         <div class="navbar-item has-dropdown">
-            <a class="navbar-link" onClick={this.handleClickProfile}>
+            <a class="navbar-link">
                 <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
                      alt="avatar.png"/>
             </a>
@@ -67,7 +65,8 @@
 
 
                 <div class="navbar-item">
-                    Logged in as mvanbrummen
+                    Logged in as
+                    <!--<span class="has-text-weight-semibold" th:text="${#authentication.getPrincipal().getUsername()}"></span>-->
                 </div>
 
 
@@ -79,9 +78,13 @@
                 </a>
 
                 <hr class="navbar-divider"/>
-                <a class="navbar-item">
+                <a href="javascript: document.logoutForm.submit()" class="navbar-item">
                     Logout
                 </a>
+
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out"/>
+                </form>
             </div>
         </div>
 
@@ -106,17 +109,17 @@
             <table class="table is-fullwidth">
                 <tbody>
 
-                    <tr th:each="repo : ${repos}">
-                        <td>
-                            <i class="fa fa-book"></i>
-                            <a href="#"> <strong th:text="${ 'mvanbrummen / ' + repo.name }"></strong></a> <span
-                                class="tag is-light">master</span>
-                            <p class="has-text-grey-dark is-size-6" th:text="${repo.description}"></p>
-                        </td>
-                        <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span> <i
-                                class="fa fa-globe"></i>
-                            <p class="has-text-grey-dark is-size-7">modified today</p></td>
-                    </tr>
+                <tr th:each="repo : ${repos}">
+                    <td>
+                        <i class="fa fa-book"></i>
+                        <a href="#"> <strong th:text="${ 'mvanbrummen / ' + repo.name }"></strong></a> <span
+                            class="tag is-light">master</span>
+                        <p class="has-text-grey-dark is-size-6" th:text="${repo.description}"></p>
+                    </td>
+                    <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span> <i
+                            class="fa fa-globe"></i>
+                        <p class="has-text-grey-dark is-size-7">modified today</p></td>
+                </tr>
                 </tbody>
             </table>
 
@@ -141,5 +144,36 @@
 </div>
 
 </body>
+
+<script>
+var dropdowns = document.querySelectorAll('.has-dropdown');
+
+dropdowns.forEach((d) => {
+    d.addEventListener('click', (e) => {
+        e.stopPropagation();
+        d.classList.toggle('is-active');
+        hideOnClickOutside(d);
+    });
+});
+
+function hideOnClickOutside(element) {
+    const outsideClickListener = event => {
+        if (!element.contains(event.target)) {
+            if (isVisible(element)) {
+                element.classList.toggle('is-active');
+                removeClickListener();
+            }
+        }
+    }
+
+    const removeClickListener = () => {
+        document.removeEventListener('click', outsideClickListener)
+    }
+
+    document.addEventListener('click', outsideClickListener)
+}
+
+const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length)
+</script>
 
 </html>

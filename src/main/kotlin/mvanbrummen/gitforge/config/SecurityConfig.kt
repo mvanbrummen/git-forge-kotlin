@@ -41,7 +41,8 @@ open class SecurityConfig(
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/about")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/about")
                 .permitAll()
     }
 }
