@@ -23,6 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <kotlin.version>1.2.41</kotlin.version>
+        <apache.sshd.version>1.7.0</apache.sshd.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,16 @@
             <groupId>org.eclipse.jgit</groupId>
             <artifactId>org.eclipse.jgit</artifactId>
             <version>4.11.0.201803080745-r</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-core</artifactId>
+            <version>${apache.sshd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-git</artifactId>
+            <version>${apache.sshd.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>

@@ -97,211 +97,267 @@
                 </h4>
             </div>
 
-            <div class="box repo-activity-bar" style="padding: 0.5rem" }>
-                <nav class="level">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-clock" aria-hidden="true"></i>
-                                <a href="#">Commits <span th:text="*{repoSummary.totalCommits}"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-code-branch" aria-hidden="true"></i>
-                                <a href="#"> Branches <span th:text="*{#lists.size(repoSummary.branches)}"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fa fa-users" aria-hidden="true"></i> Contributors 34</p>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fa fa-balance-scale" aria-hidden="true"></i> License MIT</p>
-                        </div>
-                    </div>
 
-                </nav>
+            <div th:if="*{repoSummary.isClean()}">
+                <div>
+                    <h3 class="has-text-grey-dark title is-size-4">Get started</h3>
+                    <hr/>
+
+
+                    <div>
+                        <h5 class="has-text-grey title is-size-6">Global Configuration</h5>
+                        <pre>
+                <code>
+                    <p>git config --global user.name "Michael Van Brummen"</p>
+                    <p>git config --global user.email "michaelvanbrummen@gmail.com"</p>
+                </code>
+            </pre>
+                    </div>
+                    <hr/>
+
+                    <div>
+                        <h5 class="has-text-grey title is-size-6">New Repository</h5>
+                        <pre>
+                <code>
+                    <p>git clone git@gitlab.com:mvanbrummen/test.git</p>
+                    <p>cd test</p>
+                    <p>touch README.md</p>
+                    <p>git add README.md</p>
+                    <p>git commit -m "add README"</p>
+                    <p>git push -u origin master</p>
+                </code>
+            </pre>
+                    </div>
+                    <hr/>
+                    <div>
+                        <h5 class="has-text-grey title is-size-6">Existing Folder</h5>
+                        <pre>
+                <code>
+                    <p>cd existing_folder</p>
+                    <p>git init</p>
+                    <p>git remote add origin git@gitlab.com:mvanbrummen/test.git</p>
+                    <p>git add .</p>
+                    <p>git commit -m "Initial commit"</p>
+                    <p>git push -u origin master</p>
+                </code>
+            </pre>
+                    </div>
+                </div>
 
             </div>
 
-            <nav class="level">
-                <div class="level-left">
 
-                    <div class="level-item">
-                        <div class="field">
-                            <div class="dropdown">
-                                <div class="dropdown-trigger">
-                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <div th:if="*{!repoSummary.isClean()}">
+                <div class="box repo-activity-bar" style="padding: 0.5rem" }>
+                    <nav class="level">
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fas fa-clock" aria-hidden="true"></i>
+                                    <a href="#">Commits <span th:text="*{repoSummary.totalCommits}"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fas fa-code-branch" aria-hidden="true"></i>
+                                    <a href="#"> Branches <span
+                                            th:text="*{#lists.size(repoSummary.branches)}"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fa fa-users" aria-hidden="true"></i> Contributors 34</p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fa fa-balance-scale" aria-hidden="true"></i> License MIT
+                                </p>
+                            </div>
+                        </div>
 
-                                        <span>master</span>
-                                        <span class="icon is-small">
+                    </nav>
+
+                </div>
+
+                <nav class="level">
+                    <div class="level-left">
+
+                        <div class="level-item">
+                            <div class="field">
+                                <div class="dropdown">
+                                    <div class="dropdown-trigger">
+                                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+
+                                            <span>master</span>
+                                            <span class="icon is-small">
                                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                        <div class="dropdown-content">
+                                            <div class="dropdown-item">
+                                                <h3 class="has-text-grey-dark title is-size-6">Switch Branch/Tag</h3>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <input class="input"
+                                                       type="text"
+                                                       placeholder="Filter..."/>
+                                            </div>
+                                            <hr class="dropdown-divider"/>
+
+                                            <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">
+                                                Branches</h3>
+
+                                            <a href="#" class="dropdown-item">
+                                                <span><i class="fa fa-check"></i> </span>
+                                            </a>
+
+                                            <div>
+                                                <hr class="dropdown-divider"/>
+                                                <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">
+                                                    Tags</h3>
+                                            </div>
+
+                                            <a href="#" class="dropdown-item">
+                                                <span><i class="fa fa-check"></i> </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level-item">
+
+                            <div class="dropdown">
+                                <div class="dropdown-trigger">
+                                    <button class="button"
+                                            aria-haspopup="true"
+                                            aria-controls="dropdown-menu">
+
+                            <span class="icon is-small">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+
+                            </span>
+                                        <span class="icon is-small">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
                                     </button>
                                 </div>
-                                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <h3 class="has-text-grey-dark title is-size-6">Switch Branch/Tag</h3>
-                                        </div>
-                                        <div class="dropdown-item">
-                                            <input class="input"
-                                                   type="text"
-                                                   placeholder="Filter..."/>
-                                        </div>
-                                        <hr class="dropdown-divider"/>
-
-                                        <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">Branches</h3>
-
-                                        <a href="#" class="dropdown-item">
-                                            <span><i class="fa fa-check"></i> </span>
-                                        </a>
-
-                                        <div>
-                                            <hr class="dropdown-divider"/>
-                                            <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">Tags</h3>
-                                        </div>
-
-                                        <a href="#" class="dropdown-item">
-                                            <span><i class="fa fa-check"></i> </span>
-                                        </a>
+                                        <a href="#" class="dropdown-item">New Branch</a>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <a href="#" class="dropdown-item">New Tag</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="level-item">
+                    <div class="level-right">
+                        <div class="level-item">
 
-                        <div class="dropdown">
-                            <div class="dropdown-trigger">
-                                <button class="button"
-                                        aria-haspopup="true"
-                                        aria-controls="dropdown-menu">
-
-                            <span class="icon is-small">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-
-                            </span>
-                                    <span class="icon is-small">
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                                </button>
-                            </div>
-                            <div class="dropdown-menu" role="menu">
-                                <div class="dropdown-content">
-                                    <a href="#" class="dropdown-item">New Branch</a>
-                                </div>
-                                <div class="dropdown-content">
-                                    <a href="#" class="dropdown-item">New Tag</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="level-right">
-                    <div class="level-item">
-
-                        <div class="dropdown">
-                            <div class="dropdown-trigger">
-                                <button class="button"
-                                        aria-haspopup="true"
-                                        aria-controls="dropdown-menu">
+                            <div class="dropdown">
+                                <div class="dropdown-trigger">
+                                    <button class="button"
+                                            aria-haspopup="true"
+                                            aria-controls="dropdown-menu">
 
                             <span class="icon is-small">
                                 <i class="fas fa-download"></i>
 
                             </span>
-                                    <span class="icon is-small">
+                                        <span class="icon is-small">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </span>
-                                </button>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <a class="dropdown-item">Download .zip</a>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <a href="#" class="dropdown-item">Download .tar.gz</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="dropdown-menu" role="menu">
-                                <div class="dropdown-content">
-                                    <a class="dropdown-item">Download .zip</a>
+                        </div>
+                        <div class="level-item">
+                            <div class="field has-addons">
+                                <p class="control">
+                                <div class="select">
+                                    <select>
+                                        <option>HTTPS</option>
+                                        <option>SSH</option>
+                                    </select>
                                 </div>
-                                <div class="dropdown-content">
-                                    <a href="#" class="dropdown-item">Download .tar.gz</a>
-                                </div>
+                                </p>
+                                <p class="control">
+                                    <input class="input" type="text"
+                                           value="http://gitforge.com/mvanbrummen/avroschemavalidator" readonly/>
+                                </p>
+                                <p class="control">
+                                    <button class="button">
+                                        <i class="fa fa-copy"></i>
+                                    </button>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="level-item">
-                        <div class="field has-addons">
-                            <p class="control">
-                            <div class="select">
-                                <select>
-                                    <option>HTTPS</option>
-                                    <option>SSH</option>
-                                </select>
+                </nav>
+
+
+                <table class="table is-fullwidth table-hoverable">
+                    <thead>
+                    <tr>
+                        <th>
+                            <p class="has-text-grey">
+                                <span th:text="*{repoSummary.lastCommit?.commitHash}"></span> <span
+                                    th:text="*{repoSummary.lastCommit?.message}"></span> authored by <span
+                                    th:text="*{repoSummary.lastCommit?.committerName}"></span>
+                            </p>
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="item : *{repoSummary.items}">
+                        <td>
+                            <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
+                            <a href="#" th:text="${item.path}"></a>
+                        </td>
+                        <td class="has-text-right has-text-grey">init commit</td>
+                        <td class="has-text-right has-text-grey">2 years ago</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="table is-fullwidth is-bordered" th:if="*{repoSummary.readme != null}">
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-book"></i> README.md</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="content readme-contents">
+                                <span th:text="*{repoSummary.readme}"></span>
                             </div>
-                            </p>
-                            <p class="control">
-                                <input class="input" type="text"
-                                       value="http://gitforge.com/mvanbrummen/avroschemavalidator" readonly/>
-                            </p>
-                            <p class="control">
-                                <button class="button">
-                                    <i class="fa fa-copy"></i>
-                                </button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-
-            <table class="table is-fullwidth table-hoverable">
-                <thead>
-                <tr>
-                    <th>
-                        <p class="has-text-grey">
-                            <span th:text="*{repoSummary.lastCommit?.commitHash}"></span> <span
-                                th:text="*{repoSummary.lastCommit?.message}"></span> authored by <span
-                                th:text="*{repoSummary.lastCommit?.committerName}"></span>
-                        </p>
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr th:each="item : *{repoSummary.items}">
-                    <td>
-                        <i class="fa" th:classappend="${item.isDir ? fa-folder : fa-file-code-o}"></i>
-                        <a href="#" th:text="${item.path}"></a>
-                    </td>
-                    <td class="has-text-right has-text-grey">init commit</td>
-                    <td class="has-text-right has-text-grey">2 years ago</td>
-                </tr>
-
-                </tbody>
-            </table>
-
-            <table class="table is-fullwidth is-bordered" th:if="*{repoSummary.readme != null}">
-                <thead>
-                <tr>
-                    <th><i class="fa fa-book"></i> README.md</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="content readme-contents">
-                            <span th:text="*{repoSummary.readme}"></span>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            </div>
 
         </div>
     </div>

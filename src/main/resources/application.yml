@@ -7,3 +7,8 @@ spring:
     cache: false
   flyway:
     schemas: gitforge
+
+gitforge:
+  home: ${GITFORGE_HOME:.gitforge}
+  ssh:
+    port: 8008
