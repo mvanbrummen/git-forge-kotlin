@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}"
+          type="text/css">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}" type="text/css">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          type="text/css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+
+<body>
+
+<header th:replace="fragments/navbar.html :: navbar"></header>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
+                    <li><a href="#"><strong th:text="${repoName}"></strong></a></li>
+
+                    <span th:remove="tag" th:each="path : ${pathSegments}">
+                          <li><a href="#"><strong th:text="${path}"></strong></a></li>
+                    </span>
+                </ul>
+            </nav>
+
+            <table class="table is-fullwidth table-hoverable">
+                <thead>
+                <tr>
+                    <th>
+                        <p class="has-text-grey">
+
+                        </p>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="">..</a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr th:each="item : ${items}">
+                    <td>
+                        <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
+                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${filePath} + '/' + ${item.path}}" th:text="${item.path}"></a>
+                    </td>
+                    <td class="has-text-right has-text-grey">init commit</td>
+                    <td class="has-text-right has-text-grey">2 years ago</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

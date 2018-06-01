@@ -3,6 +3,7 @@ package mvanbrummen.gitforge.service
 import mvanbrummen.gitforge.api.RepositorySummary
 import mvanbrummen.gitforge.repository.RepositoryRepository
 import mvanbrummen.gitforge.repository.UserRepository
+import mvanbrummen.gitforge.util.GitDirectoryItem
 import mvanbrummen.gitforge.util.JGitUtil
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
@@ -35,5 +36,11 @@ class RepositoryService(
         val repo = repository.findRepository(username, repoName)
 
         return RepositorySummary(repo.description, gitUtil.getRepositorySummary(git.repository))
+    }
+
+    fun getRepositoryItemsByPath(username: String, repoName: String, path: String): List<GitDirectoryItem> {
+        val git = gitUtil.openRepository(username, repoName)
+
+        return gitUtil.listDirectory(git.repository, path)
     }
 }

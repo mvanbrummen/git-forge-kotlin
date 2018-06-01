@@ -331,7 +331,7 @@
                     <tr th:each="item : *{repoSummary.items}">
                         <td>
                             <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
-                            <a href="#" th:text="${item.path}"></a>
+                            <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${item.path}}" th:text="${item.path}"></a>
                         </td>
                         <td class="has-text-right has-text-grey">init commit</td>
                         <td class="has-text-right has-text-grey">2 years ago</td>

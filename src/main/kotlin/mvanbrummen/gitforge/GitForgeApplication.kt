@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-open class DemoApplication
+open class GitForgeApplication
 
 fun main(args: Array<String>) {
-    runApplication<DemoApplication>(*args)
+    runApplication<GitForgeApplication>(*args)
 
     SshServer(8008, FileUtil.homeDir().canonicalPath).start()
 }
