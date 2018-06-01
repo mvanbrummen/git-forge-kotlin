@@ -14,84 +14,8 @@
 </head>
 
 <body>
-<nav class="navbar is-dark level" aria-label="main navigation">
 
-    <div class="navbar-brand">
-        <a href="/" class="navbar-item">
-            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" alt="logo.png"/>
-            <span class="title has-text-white has-text-weight-light">&nbsp;Git<span
-                    class="has-text-weight-semibold primary-font">Forge</span>
-                </span>
-        </a>
-    </div>
-
-    <div class="navbar-start">
-
-    </div>
-
-    <div class="navbar-end">
-
-        <div class="navbar-item">
-            <div class="field has-addons">
-                <p class="control">
-                    <input class="input" type="text" placeholder="Find a repository"/>
-                </p>
-                <p class="control">
-                    <button class="button is-primary">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </p>
-            </div>
-        </div>
-
-        <div class="navbar-item has-dropdown">
-            <a class="navbar-link"
-               onClick={this.handleClickPlus}>
-                <i class="fa fa-plus-square"></i>
-            </a>
-
-            <div class="navbar-dropdown is-right">
-                <Link to="/repos/new" class="navbar-item">
-                Create Repository
-                </Link>
-
-            </div>
-        </div>
-
-
-        <div class="navbar-item has-dropdown">
-            <a class="navbar-link" onClick={this.handleClickProfile}>
-                <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
-                     alt="avatar.png"/>
-            </a>
-
-            <div class="navbar-dropdown is-right">
-
-
-                <div class="navbar-item">
-                    Logged in as mvanbrummen
-                </div>
-
-
-                <a class="navbar-item">
-                    Profile
-                </a>
-                <a class="navbar-item">
-                    Settings
-                </a>
-
-                <hr class="navbar-divider"/>
-                <a class="navbar-item">
-                    Logout
-                </a>
-            </div>
-        </div>
-
-
-    </div>
-
-</nav>
-
+<header th:replace="fragments/navbar.html :: navbar"> </header>
 
 <div class="container">
     <div class="columns">
