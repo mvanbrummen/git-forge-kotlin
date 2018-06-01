@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/settings'}">
                             <span class="icon is-small"><i class="fa fa-cog"></i></span>
                             <span>Settings</span>
                         </a>
@@ -350,7 +350,7 @@
                     <tr>
                         <td>
                             <div class="content readme-contents">
-                                <span th:text="*{repoSummary.readme}"></span>
+                                <span th:remove="tag" th:utext="*{repoSummary.readme}"></span>
                             </div>
                         </td>
                     </tr>

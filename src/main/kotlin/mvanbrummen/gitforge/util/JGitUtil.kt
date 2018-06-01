@@ -175,7 +175,7 @@ open class JGitUtil {
         val objectId = treeWalk.getObjectId(0)
         val loader = repository.open(objectId)
 
-        return String(loader.bytes)
+        return String(loader.bytes).toHtml()
     }
 
     fun getFileContents(repository: Repository, filePath: String): String? {
