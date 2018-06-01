@@ -12,9 +12,11 @@ import org.eclipse.jgit.treewalk.AbstractTreeIterator
 import org.eclipse.jgit.treewalk.CanonicalTreeParser
 import org.eclipse.jgit.treewalk.TreeWalk
 import org.eclipse.jgit.treewalk.filter.PathFilter
+import org.springframework.stereotype.Component
 import java.io.ByteArrayOutputStream
 
-object JGitUtil {
+@Component
+open class JGitUtil {
 
     fun initRepository(account: String, name: String) = Git.init().setDirectory(repositoryDir(account, name)).call()
 
@@ -25,7 +27,7 @@ object JGitUtil {
         val dirContents = listDirectory(repository)
         val commits = getAllCommits(repository)
         val totalCommits = commits.size
-        val lastCommit = commits.first()
+        val lastCommit = if (commits.isEmpty()) null else commits.first()
         val branches = listBranches(repository)
         val tags = listTags(repository)
         val readme = getReadmeContents(repository)

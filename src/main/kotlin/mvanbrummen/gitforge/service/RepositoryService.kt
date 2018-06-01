@@ -1,26 +1,39 @@
 package mvanbrummen.gitforge.service
 
+import mvanbrummen.gitforge.api.RepositorySummary
 import mvanbrummen.gitforge.repository.RepositoryRepository
 import mvanbrummen.gitforge.repository.UserRepository
+import mvanbrummen.gitforge.util.JGitUtil
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class RepositoryService(
-        val repository: RepositoryRepository,
-        val userRepository: UserRepository) {
+        private val repository: RepositoryRepository,
+        private val userRepository: UserRepository,
+        private val gitUtil: JGitUtil) {
 
     fun findByRepositoriesByAccount(username: String): List<Repository> {
-        return repository.findByRepositoriesByAccount(username)
+        return repository.findRepositoriesByAccount(username)
     }
 
     fun saveRepository(username: String, repoName: String, description: String, isPrivate: Boolean) {
+        gitUtil.initRepository(username, repoName)
+
         repository.saveRepository(Repository(
                 UUID.randomUUID(),
                 userRepository.getUser(username)?.id,
                 repoName,
                 description
         ))
+    }
+
+    fun getRepositorySummary(username: String, repoName: String): RepositorySummary {
+        val git = gitUtil.openRepository(username, repoName)
+
+        val repo = repository.findRepository(username, repoName)
+
+        return RepositorySummary(repo.description, gitUtil.getRepositorySummary(git.repository))
     }
 }

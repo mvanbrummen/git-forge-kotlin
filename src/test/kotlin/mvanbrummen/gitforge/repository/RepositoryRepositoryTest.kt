@@ -18,7 +18,7 @@ class RepositoryRepositoryTest {
     @Test
     @Ignore
     fun `get account by username should return list of repos`() {
-        val res = repositoryRepository.findByRepositoriesByAccount("mvanbrummen")
+        val res = repositoryRepository.findRepositoriesByAccount("mvanbrummen")
 
         assertThat(res).isNotNull
         assertThat(res).isNotEmpty
@@ -26,7 +26,7 @@ class RepositoryRepositoryTest {
 
     @Test
     fun `get account by unknown username should return empty list`() {
-        val res = repositoryRepository.findByRepositoriesByAccount("unknown")
+        val res = repositoryRepository.findRepositoriesByAccount("unknown")
 
         assertThat(res).isEmpty()
     }

@@ -10,12 +10,21 @@ import org.springframework.stereotype.Service
 @Service
 class RepositoryRepository(private val dsl: DSLContext) {
 
-    fun findByRepositoriesByAccount(username: String): List<Repository> {
+    fun findRepositoriesByAccount(username: String): List<Repository> {
         return dsl.select()
                 .from(REPOSITORY)
                 .join(ACCOUNT).on(REPOSITORY.ACCOUNT_ID.eq(ACCOUNT.ID))
                 .where(ACCOUNT.USERNAME.eq(username))
                 .fetchInto(Repository::class.java)
+    }
+
+    fun findRepository(username: String, repoName: String): Repository {
+        return dsl.select()
+                .from(REPOSITORY)
+                .join(ACCOUNT).on(REPOSITORY.ACCOUNT_ID.eq(ACCOUNT.ID))
+                .where(ACCOUNT.USERNAME.eq(username))
+                .and(REPOSITORY.NAME.eq(repoName))
+                .fetchOneInto(Repository::class.java)
     }
 
     fun saveRepository(repository: Repository): Int {
