@@ -43,4 +43,7 @@ class RepositoryService(
 
         return gitUtil.listDirectory(git.repository, path)
     }
+
+    fun deleteRepository(username: String, repoName: String) = repository.delete(username, repoName)
+
 }

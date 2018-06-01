@@ -92,7 +92,7 @@
 
 
             <div class="box">
-                <form>
+                <form th:action="@{'/repo/mvanbrummen/' + ${repoName}}" th:object="${deleteRepoForm}" method="post">
                     <div class="field">
                         <label class="label">Delete Repository</label>
                         <p class="help">Type the name of the repository to delete</p>
