@@ -30,7 +30,7 @@
                 <tr th:each="repo : ${repos}">
                     <td>
                         <i class="fa fa-book"></i>
-                        <a href="#"> <strong th:text="${ 'mvanbrummen / ' + repo.name }"></strong></a> <span
+                        <a th:href="@{'/repo/mvanbrummen/' + ${repo.name}}"> <strong th:text="${ 'mvanbrummen / ' + repo.name }"></strong></a> <span
                             class="tag is-light">master</span>
                         <p class="has-text-grey-dark is-size-6" th:text="${repo.description}"></p>
                     </td>
