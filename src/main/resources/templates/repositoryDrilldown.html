@@ -24,7 +24,7 @@
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
                     <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                    <li><a href="#"><strong th:text="${repoName}"></strong></a></li>
+                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a></li>
 
                     <span th:remove="tag" th:each="path : ${pathSegments}">
                           <li><a href="#"><strong th:text="${path}"></strong></a></li>
