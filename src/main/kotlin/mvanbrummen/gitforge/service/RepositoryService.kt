@@ -60,4 +60,12 @@ class RepositoryService(
     fun listTags(username: String, repoName: String): List<Tag> =
             gitUtil.listTags(gitUtil.openRepository(username, repoName))
 
+    fun createBranch(username: String, repoName: String, branchName: String, from: String) {
+        // TODO add activity event
+
+        val git = gitUtil.openRepository(username, repoName)
+
+        gitUtil.createBranch(git, branchName, from)
+    }
+
 }

@@ -203,6 +203,13 @@ open class JGitUtil {
         return contents
     }
 
+    fun createBranch(git: Git, name: String, from: String) {
+        git.branchCreate()
+                .setStartPoint(from)
+                .setName(name)
+                .call()
+    }
+
     private fun prepareTreeParser(repository: Repository, objectId: String): AbstractTreeIterator {
         val walk = RevWalk(repository)
 

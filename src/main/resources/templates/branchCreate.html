@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+<body>
+<header th:replace="fragments/navbar.html :: navbar"></header>
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            <h3 class="has-text-grey-dark title is-size-5">Create a new branch</h3>
+            <hr/>
+            <form th:object="${newBranchForm}"
+                  th:action="@{'/repo/mvanbrummen/' + ${repoName} + '/branch/create'}"
+                  method="post">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label has-text-grey">Branch Name </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <input th:field="*{branchName}" name="branchName"
+                                   class="input"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label has-text-grey">Create From</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="control">
+                            <div class="select">
+                                <select th:field="*{from}">
+                                    <option th:each="branch : ${branches}"
+                                            th:value="${branch.refId}"
+                                            th:text="${branch.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-primary" type="submit">
+                                        Create Branch
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <a th:href="@{'/repo/mvanbrummen/' + ${repoName}}" class="button">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <hr/>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
