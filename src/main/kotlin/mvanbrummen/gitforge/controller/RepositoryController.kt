@@ -25,11 +25,15 @@ class RepositoryController(private val repositoryService: RepositoryService) {
         val filePath = httpServletRequest.requestURI.replace(Regex("/repo.*blob/"), "")
         val pathSegments = filePath.split("/")
 
+        val pathSegmentMap = pathSegments.map {
+            it to pathSegments.subList(0, pathSegments.indexOf(it) + 1).joinToString("/")
+        }.toMap()
+
         val items = repositoryService.getRepositoryItemsByPath(accountName, repoName, filePath)
 
         model.addAttribute("filePath", filePath)
         model.addAttribute("repoName", repoName)
-        model.addAttribute("pathSegments", pathSegments)
+        model.addAttribute("pathSegmentMap", pathSegmentMap)
 
         if (items.isEmpty()) {
             val fileContents = repositoryService.getFileContentsByPath(accountName, repoName, filePath)
