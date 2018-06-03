@@ -24,7 +24,8 @@
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
                     <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a></li>
+                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    </li>
 
                     <span th:remove="tag" th:each="path : ${pathSegments}">
                           <li><a href="#"><strong th:text="${path}"></strong></a></li>
@@ -47,7 +48,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <a href="">..</a>
+                        <a th:href="@{${parentPath}}">..</a>
                     </td>
                     <td></td>
                     <td></td>
@@ -55,7 +56,8 @@
                 <tr th:each="item : ${items}">
                     <td>
                         <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
-                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${filePath} + '/' + ${item.path}}" th:text="${item.path}"></a>
+                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${filePath} + '/' + ${item.path}}"
+                           th:text="${item.path}"></a>
                     </td>
                     <td class="has-text-right has-text-grey">init commit</td>
                     <td class="has-text-right has-text-grey">2 years ago</td>

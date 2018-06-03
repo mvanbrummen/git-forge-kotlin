@@ -36,6 +36,13 @@ class RepositoryController(private val repositoryService: RepositoryService) {
             model.addAttribute("fileContents", fileContents)
             return "fileView"
         } else {
+            val parentPath = if (pathSegments.size == 1) "/repo/$accountName/$repoName"
+            else {
+                val segments = pathSegments.dropLast(1).joinToString("/")
+
+                "/repo/$accountName/$repoName/blob/$segments"
+            }
+            model.addAttribute("parentPath", parentPath)
             model.addAttribute("items", items)
             return "repositoryDrilldown"
         }
