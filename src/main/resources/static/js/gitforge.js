@@ -1,12 +1,19 @@
-var dropdowns = document.querySelectorAll('.has-dropdown');
+var navDropdowns = document.querySelectorAll('.has-dropdown');
+var dropdowns = document.querySelectorAll('.dropdown');
 
-dropdowns.forEach((d) => {
-    d.addEventListener('click', (e) => {
-        e.stopPropagation();
-        d.classList.toggle('is-active');
-        hideOnClickOutside(d);
+handleClick(navDropdowns);
+handleClick(dropdowns);
+
+
+function handleClick(element) {
+    element.forEach((d) => {
+        d.addEventListener('click', (e) => {
+            e.stopPropagation();
+            d.classList.toggle('is-active');
+            hideOnClickOutside(d);
+        });
     });
-});
+}
 
 function hideOnClickOutside(element) {
     const outsideClickListener = event => {
