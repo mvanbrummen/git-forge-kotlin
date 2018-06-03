@@ -27,10 +27,17 @@ class RepositoryController(private val repositoryService: RepositoryService) {
 
         val items = repositoryService.getRepositoryItemsByPath(accountName, repoName, filePath)
 
-        model.addAttribute("items", items)
+        model.addAttribute("filePath", filePath)
         model.addAttribute("repoName", repoName)
         model.addAttribute("pathSegments", pathSegments)
-        model.addAttribute("filePath", filePath)
-        return "repositoryDrilldown"
+
+        if (items.isEmpty()) {
+            val fileContents = repositoryService.getFileContentsByPath(accountName, repoName, filePath)
+            model.addAttribute("fileContents", fileContents)
+            return "fileView"
+        } else {
+            model.addAttribute("items", items)
+            return "repositoryDrilldown"
+        }
     }
 }

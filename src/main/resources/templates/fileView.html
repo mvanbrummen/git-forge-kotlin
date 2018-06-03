@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}"
+          type="text/css">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}" type="text/css">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          type="text/css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</head>
+
+<body>
+
+<header th:replace="fragments/navbar.html :: navbar"></header>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
+                    <li><a href="#"><strong th:text="${repoName}"></strong></a></li>
+
+                    <span th:remove="tag" th:each="path : ${pathSegments}">
+                          <li><a href="#"><strong th:text="${path}"></strong></a></li>
+                    </span>
+                </ul>
+            </nav>
+
+            <table class="table is-fullwidth is-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        <i class="fa fa-book"></i> <span th:text="${filePath}"></span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="code-td">
+                        <div class="content">
+<pre class="prettyprint"><code th:text="${fileContents}"></code></pre>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

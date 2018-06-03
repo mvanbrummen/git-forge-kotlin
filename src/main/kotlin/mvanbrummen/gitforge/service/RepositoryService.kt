@@ -46,4 +46,10 @@ class RepositoryService(
 
     fun deleteRepository(username: String, repoName: String) = repository.delete(username, repoName)
 
+    fun getFileContentsByPath(username: String, repoName: String, path: String): String {
+        val git = gitUtil.openRepository(username, repoName)
+
+        return gitUtil.getFileContents(git.repository, path) ?: throw RuntimeException("no file $path")
+    }
+
 }
