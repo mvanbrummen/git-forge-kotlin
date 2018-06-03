@@ -55,7 +55,14 @@
                 <div class="navbar-item">
                     Logged in as
                     <!--<span class="has-text-weight-semibold" th:text="${#authentication.getPrincipal().getUsername()}"></span>-->
+
                 </div>
+
+                <div class="navbar-item">
+                    <p class="has-text-weight-semibold">@mvanbrummen</p>
+                </div>
+
+                <hr class="navbar-divider"/>
 
 
                 <a class="navbar-item">
@@ -79,4 +86,7 @@
 
     </div>
 
+    <script th:src="@{/js/gitforge.js}"></script>
+
 </nav>
+
