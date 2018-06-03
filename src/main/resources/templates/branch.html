@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+<body>
+<header th:replace="fragments/navbar.html :: navbar"></header>
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
+                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    </li>
+                    <li><a href="#"><strong>Branches</strong></a></li>
+                </ul>
+            </nav>
+
+
+            <div class="level">
+                <div class="level-left">
+                    <input class="input"
+                           type="text"
+                           placeholder="Filter by name..."
+                    />
+                </div>
+                <div class="level-right">
+                    <a th:href="@{branch/create}" class="is-primary button"
+                       type="button">New Branch</a>
+                </div>
+            </div>
+
+
+            <table class="table is-fullwidth">
+                <thead>
+                <tr>
+                    <th>Branches</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="branch : ${branches}">
+                    <td>
+                        <p>
+                            <i class="fa fa-code-fork" aria-hidden="true"></i>
+                            <a href="#" th:text="${branch.name}"> </a>
+
+                            <span class="tag is-rounded is-success">default</span>
+                            <span class="tag is-rounded is-dark">protected</span>
+                        </p>
+                        <p class="has-text-grey">
+                            <i class="fa fa-code-fork" aria-hidden="true"></i>
+                            <a href="#" class="has-text-grey"> 1e8b9da3</a> · Last commit message · a day ago
+                        </p>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <button class="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

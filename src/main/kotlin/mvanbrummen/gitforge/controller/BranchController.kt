@@ -28,6 +28,14 @@ class BranchController(private val repositoryService: RepositoryService) {
         return "redirect:/repo/{accountName}/{repoName}"
     }
 
+    @GetMapping("/repo/{accountName}/{repoName}/branch")
+    fun branchPage(@PathVariable accountName: String, @PathVariable repoName: String, model: Model): String {
+        model.addAttribute("repoName", repoName)
+        model.addAttribute("branches", repositoryService.listBranches(accountName, repoName))
+        return "branch"
+    }
+
+
 }
 
 data class NewBranchForm(

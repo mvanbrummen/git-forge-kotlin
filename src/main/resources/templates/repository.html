@@ -161,7 +161,7 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-code-branch" aria-hidden="true"></i>
-                                    <a href="#"> <span class="has-text-weight-bold">Branches</span> <span
+                                    <a th:href="@{${repoName} + '/branch'}"> <span class="has-text-weight-bold">Branches</span> <span
                                             th:text="*{#lists.size(repoSummary.branches)}"></span></a>
                                 </p>
                             </div>
