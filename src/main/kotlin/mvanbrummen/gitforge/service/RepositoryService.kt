@@ -3,8 +3,10 @@ package mvanbrummen.gitforge.service
 import mvanbrummen.gitforge.api.RepositorySummary
 import mvanbrummen.gitforge.repository.RepositoryRepository
 import mvanbrummen.gitforge.repository.UserRepository
+import mvanbrummen.gitforge.util.Branch
 import mvanbrummen.gitforge.util.GitDirectoryItem
 import mvanbrummen.gitforge.util.JGitUtil
+import mvanbrummen.gitforge.util.Tag
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
 import java.util.*
@@ -35,7 +37,7 @@ class RepositoryService(
 
         val repo = repository.findRepository(username, repoName)
 
-        return RepositorySummary(repo.description, gitUtil.getRepositorySummary(git.repository))
+        return RepositorySummary(repo.description, gitUtil.getRepositorySummary(git))
     }
 
     fun getRepositoryItemsByPath(username: String, repoName: String, path: String): List<GitDirectoryItem> {
@@ -51,5 +53,11 @@ class RepositoryService(
 
         return gitUtil.getFileContents(git.repository, path) ?: throw RuntimeException("no file $path")
     }
+
+    fun listBranches(username: String, repoName: String): List<Branch> =
+            gitUtil.listBranches(gitUtil.openRepository(username, repoName))
+
+    fun listTags(username: String, repoName: String): List<Tag> =
+            gitUtil.listTags(gitUtil.openRepository(username, repoName))
 
 }

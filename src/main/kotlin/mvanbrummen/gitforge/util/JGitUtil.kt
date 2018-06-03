@@ -22,14 +22,16 @@ open class JGitUtil {
 
     fun openRepository(account: String, name: String): Git = Git.open(gitDir(account, name))
 
-    fun getRepositorySummary(repository: Repository): GitRepositorySummary {
+    fun getRepositorySummary(git: Git): GitRepositorySummary {
+        val repository = git.repository
+
         val isClean = isRepositoryClean(repository)
         val dirContents = listDirectory(repository)
         val commits = getAllCommits(repository)
         val totalCommits = commits.size
         val lastCommit = if (commits.isEmpty()) null else commits.first()
-        val branches = listBranches(repository)
-        val tags = listTags(repository)
+        val branches = listBranches(git)
+        val tags = listTags(git)
         val readme = getReadmeContents(repository)
 
         return GitRepositorySummary(isClean, branches, tags, totalCommits, lastCommit, dirContents, readme)
@@ -89,15 +91,13 @@ open class JGitUtil {
         }
     }
 
-    fun listBranches(repository: Repository): List<Branch> {
-        val git = Git(repository)
+    fun listBranches(git: Git): List<Branch> {
         val branchRefs = git.branchList().call()
 
         return branchRefs.map { Branch(it.name, it.name.replace("refs/heads/", ""), it.objectId.name) }
     }
 
-    fun listTags(repository: Repository): List<Tag> {
-        val git = Git(repository)
+    fun listTags(git: Git): List<Tag> {
         val tagRefs = git.tagList().call()
 
         return tagRefs.map { Tag(it.name, it.name.replace("refs/tags/", ""), it.objectId.name) }
