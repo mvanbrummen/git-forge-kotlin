@@ -13,7 +13,7 @@ object FileUtil {
     fun gitDir(account: String, name: String): File = createDir("${homeDir().getAbsolutePath()}/$account/$name/.git")
 
     fun deleteRepositoryDir(account: String, name: String) {
-        repositoryDir(account, name).delete()
+        repositoryDir(account, name).deleteRecursively()
     }
 
     private fun createDir(path: String): File {
