@@ -23,7 +23,7 @@ class SignupController(private val userService: UserService) {
             userService.createUser(username ?: "", emailAddress ?: "", password ?: "")
         }
 
-        return "/login"
+        return "redirect:/login"
     }
 }
 

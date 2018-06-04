@@ -9,6 +9,7 @@ class HomeController {
 
     @GetMapping("/about")
     fun homePage(model: Model): String {
+        model.addAttribute("signupForm", SignupForm())
         return "home"
     }
 }

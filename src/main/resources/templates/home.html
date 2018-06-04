@@ -38,7 +38,7 @@
 </nav>
 
 <section class="hero is-fullheight"
-         style="background-image: url('/images/bg.png');background-size: cover;margin-top: -1.5rem;">
+         style="background-image: url('/images/bg.svg');background-size: cover;margin-top: -1.5rem;">
     <div class="hero-body">
         <div class="container">
 
@@ -53,43 +53,40 @@
                 </div>
                 <div class="column" style="padding-left: 2rem;padding-right: 2rem;">
                     <div class="box">
-                        <form>
+                        <form action="#" th:action="@{/signup}" th:object="${signupForm}" method="post">
                             <div class="field">
                                 <label class="label">Username</label>
                                 <p class="control has-icons-left">
-                                    <input class="input" type="text" placeholder="Pick a username"/>
+                                    <input th:field="*{username}" class="input" type="text" placeholder="Pick a username"/>
                                     <span class="icon is-small is-left">
-                                            <i class="fa fa-user"></i>
-                                        </span>
+                                <i class="fa fa-user"></i>
+                            </span>
                                 </p>
                             </div>
                             <div class="field">
                                 <label class="label">Email Address</label>
                                 <p class="control has-icons-left">
-                                    <input class="input" type="email" placeholder="you@example.com"/>
+                                    <input th:field="*{emailAddress}" class="input" type="email" placeholder="you@example.com"
+                                           onChange={handleEmailAddressChange}/>
                                     <span class="icon is-small is-left">
-                                            <i class="fa fa-envelope"></i>
-                                        </span>
+                                <i class="fa fa-envelope"></i>
+                            </span>
                                 </p>
                             </div>
-
                             <div class="field">
                                 <label class="label">Password</label>
                                 <p class="control has-icons-left">
-                                    <input class="input" type="password" placeholder="Choose your password"/>
-                                    <span class="icon is-small is-left">
-                                            <i class="fa fa-lock"></i>
-                                        </span>
+                                    <input th:field="*{password}" class="input" type="password" placeholder="Choose your password"/>
                                     <span class="help">Use at least one letter, one numeral, and seven characters.</span>
+                                    <span class="icon is-small is-left">
+                                <i class="fa fa-lock"></i>
+                            </span>
                                 </p>
                             </div>
-
                             <button class="button is-block is-success is-fullwidth">Sign up to GitForge</button>
 
                             <div class="has-text-centered" style="padding-left: 4rem;padding-right: 4rem;">
-                                <p class="help">By clicking "Sign up to GitForge you accept our
-                                    <a href="#">terms of service
-                                    </a> and
+                                <p class="help">By clicking "Sign up to GitForge you accept our <a href="#">terms of service</a> and
                                     <a href="#">privacy agreement</a>.</p>
                             </div>
                         </form>
