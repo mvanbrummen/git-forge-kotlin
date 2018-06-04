@@ -1,5 +1,5 @@
 <nav th:fragment="navbar" class="navbar is-dark level" aria-label="main navigation"
-     xmlns:th="http://www.w3.org/1999/xhtml">
+     xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <div class="navbar-brand">
         <a href="/" class="navbar-item">
@@ -54,12 +54,12 @@
 
                 <div class="navbar-item">
                     Logged in as
-                    <!--<span class="has-text-weight-semibold" th:text="${#authentication.getPrincipal().getUsername()}"></span>-->
+
 
                 </div>
 
                 <div class="navbar-item">
-                    <p class="has-text-weight-semibold">@mvanbrummen</p>
+                    <p class="has-text-weight-semibold">@<span sec:authentication="name"></span></p>
                 </div>
 
                 <hr class="navbar-divider"/>
