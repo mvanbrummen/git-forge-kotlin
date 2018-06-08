@@ -27,7 +27,7 @@ open class JGitUtil {
 
         val isClean = isRepositoryClean(repository)
         val dirContents = listDirectory(repository)
-        val commits = getAllCommits(repository)
+        val commits = getAllCommits(git)
         val totalCommits = commits.size
         val lastCommit = if (commits.isEmpty()) null else commits.first()
         val branches = listBranches(git)
@@ -37,10 +37,9 @@ open class JGitUtil {
         return GitRepositorySummary(isClean, branches, tags, totalCommits, lastCommit, dirContents, readme)
     }
 
-    fun getAllCommits(repository: Repository): List<Commit> {
-        if (isRepositoryClean(repository)) return listOf()
+    fun getAllCommits(git: Git): List<Commit> {
+        if (isRepositoryClean(git.repository)) return listOf()
 
-        val git = Git(repository)
         val revCommits = git.log().all().call()
 
         return revCommits.map {
@@ -115,7 +114,7 @@ open class JGitUtil {
 
         val treeWalk = TreeWalk(repository)
         treeWalk.addTree(tree)
-        treeWalk.setRecursive(false)
+        treeWalk.isRecursive = false
 
         val items = arrayListOf<GitDirectoryItem>()
 
@@ -138,8 +137,8 @@ open class JGitUtil {
 
         val treeWalk = TreeWalk(repository)
         treeWalk.addTree(tree)
-        treeWalk.setRecursive(false)
-        treeWalk.setFilter(PathFilter.create(path))
+        treeWalk.isRecursive = false
+        treeWalk.filter = PathFilter.create(path)
 
         val items = arrayListOf<GitDirectoryItem>()
 
@@ -167,8 +166,8 @@ open class JGitUtil {
 
         val treeWalk = TreeWalk(repository)
         treeWalk.addTree(tree)
-        treeWalk.setRecursive(false)
-        treeWalk.setFilter(PathFilter.create("README.md"))
+        treeWalk.isRecursive = false
+        treeWalk.filter = PathFilter.create("README.md")
 
         if (!treeWalk.next()) return null
 
@@ -186,8 +185,8 @@ open class JGitUtil {
 
         val treeWalk = TreeWalk(repository)
         treeWalk.addTree(tree)
-        treeWalk.setRecursive(false)
-        treeWalk.setFilter(PathFilter.create(filePath))
+        treeWalk.isRecursive = false
+        treeWalk.filter = PathFilter.create(filePath)
 
         var contents: String? = null
 

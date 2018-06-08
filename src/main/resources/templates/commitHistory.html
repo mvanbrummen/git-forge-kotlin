@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="../static/css/bulma-0.7.1/css/bulma.css" th:href="@{/css/bulma-0.7.1/css/bulma.css}"
+          type="text/css">
+    <link rel="stylesheet" href="../static/css/gitforge.css" th:href="@{/css/gitforge.css}" type="text/css">
+    <link rel="stylesheet" href="../static/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"
+          type="text/css"
+          th:href="@{/css/fontawesome-free-5.0.13/web-fonts-with-css/css/fontawesome-all.min.css}">
+    <title>GitForge</title>
+</head>
+
+<body>
+
+<header th:replace="fragments/navbar.html :: navbar"></header>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
+                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    </li>
+
+                    <li><a href="#"><strong th:text="Commits"></strong></a></li>
+                </ul>
+            </nav>
+
+            <div class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="field">
+                            <div class="dropdown">
+                                <div class="dropdown-trigger">
+                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+
+                                        <span>master</span>
+                                        <span class="icon is-small">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <h3 class="has-text-grey-dark title is-size-6">Switch Branch/Tag</h3>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <input class="input"
+                                                   type="text"
+                                                   placeholder="Filter..."/>
+                                        </div>
+                                        <hr class="dropdown-divider"/>
+
+                                        <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">
+                                            Branches</h3>
+
+                                        <a href="#" class="dropdown-item" th:each="branch : ${branches}">
+                                                <span><i class="fa fa-check"></i> <span
+                                                        th:text="${branch.name}"></span></span>
+                                        </a>
+
+                                        <div th:if="${not #lists.isEmpty(tags)}">
+                                            <hr class="dropdown-divider"/>
+                                            <h3 class="has-text-grey-dark title is-size-7 dropdown-subtitle">
+                                                Tags</h3>
+
+                                            <a href="#" class="dropdown-item" th:each="tag : ${tags}">
+                                                    <span><i class="fa fa-check"></i> <span
+                                                            th:text="${tag.name}"></span>
+                                                    </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input class="input"
+                           type="text"
+                           placeholder="Filter by message..."/>
+                </div>
+            </div>
+
+
+            <table class="table is-fullwidth">
+                <thead>
+                <tr>
+                    <th>12 May, 2018 6 commits</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr th:each="commit : ${commits}">
+                    <td>
+                        <figure class="image is-32x32 is-pulled-left table-avatar">
+                            <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
+                                 alt="avatar.png"/>
+                        </figure>
+                        <p><a href="#" th:text="${commit.message}"></a></p>
+                        <p> Authored by <span class='has-text-weight-semibold' th:text="${commit.committerName}"></span>
+                            <span th:text="${commit.commitTime}"></span></p>
+                    </td>
+                    <td>
+                        <div class="field has-addons is-pulled-right">
+                            <div class="control">
+                                <input class="input commit-hash-input" type="text" readOnly th:value="${commit.commitHash}"/>
+
+                            </div>
+                            <div class="control">
+                                <button class="button"><i class="fa fa-paste"></i></button>
+                            </div>
+                        </div>
+                        <input type='hidden'/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

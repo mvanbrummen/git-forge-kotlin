@@ -3,10 +3,7 @@ package mvanbrummen.gitforge.service
 import mvanbrummen.gitforge.api.RepositorySummary
 import mvanbrummen.gitforge.repository.RepositoryRepository
 import mvanbrummen.gitforge.repository.UserRepository
-import mvanbrummen.gitforge.util.Branch
-import mvanbrummen.gitforge.util.GitDirectoryItem
-import mvanbrummen.gitforge.util.JGitUtil
-import mvanbrummen.gitforge.util.Tag
+import mvanbrummen.gitforge.util.*
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
 import java.util.*
@@ -68,4 +65,9 @@ class RepositoryService(
         gitUtil.createBranch(git, branchName, from)
     }
 
+    fun listCommits(username: String, repoName: String, branchName: String): List<Commit> {
+        val git = gitUtil.openRepository(username, repoName)
+
+        return gitUtil.getAllCommits(git)
+    }
 }

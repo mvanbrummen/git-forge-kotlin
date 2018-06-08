@@ -153,7 +153,7 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-clock" aria-hidden="true"></i>
-                                    <a href="#"><span class="has-text-weight-bold">Commits</span> <span
+                                    <a th:href="@{${repoName} + '/master' + '/commits'}"><span class="has-text-weight-bold">Commits</span> <span
                                             th:text="*{repoSummary.totalCommits}"></span></a>
                                 </p>
                             </div>
