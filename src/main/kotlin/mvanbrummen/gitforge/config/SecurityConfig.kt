@@ -22,13 +22,10 @@ open class SecurityConfig(
 
     @Bean
     open fun authenticationProvider(): DaoAuthenticationProvider {
-        val authProvider = DaoAuthenticationProvider()
-        with(authProvider) {
+        return DaoAuthenticationProvider().apply {
             setUserDetailsService(userService)
             setPasswordEncoder(passwordEncoder)
         }
-
-        return authProvider
     }
 
     override fun configure(http: HttpSecurity) {
