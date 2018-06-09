@@ -25,7 +25,7 @@
                 <div class="column">
                     <nav class="breadcrumb" aria-label="breadcrumbs">
                         <ul>
-                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span sec:authentication="name"></span></strong></a></li>
+                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span th:text="${accountName}"></span></strong></a></li>
                             <li><a href="#"><strong th:text="${repoName}"></strong></a></li>
                         </ul>
                     </nav>
@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a th:href="@{'/repo/' + ${username} + '/' + ${repoName} + '/settings'}">
+                        <a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/settings'}">
                             <span class="icon is-small"><i class="fa fa-cog"></i></span>
                             <span>Settings</span>
                         </a>
@@ -307,7 +307,7 @@
                                 </p>
                                 <p class="control">
                                     <input class="input" type="text"
-                                           th:value="${'http://gitforge.com/' + username + '/' + repoName}" readonly/>
+                                           th:value="${'http://gitforge.com/' + accountName + '/' + repoName}" readonly/>
                                 </p>
                                 <p class="control">
                                     <button class="button">
@@ -339,7 +339,7 @@
                     <tr th:each="item : *{repoSummary.items}">
                         <td>
                             <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
-                            <a th:href="@{'/repo/' + ${username} + '/' + ${repoName} + '/blob/' + ${item.path}}"
+                            <a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/blob/' + ${item.path}}"
                                th:text="${item.path}"></a>
                         </td>
                         <td class="has-text-right has-text-grey">init commit</td>

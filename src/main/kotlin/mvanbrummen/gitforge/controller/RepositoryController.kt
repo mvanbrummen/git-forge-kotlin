@@ -20,6 +20,7 @@ class RepositoryController(private val repositoryService: RepositoryService) {
         model.addAttribute("branches", repository.repoSummary.branches)
         model.addAttribute("tags", repository.repoSummary.tags)
         model.addAttribute("username", principal.name)
+        model.addAttribute("accountName", accountName)
         return "repository"
     }
 
