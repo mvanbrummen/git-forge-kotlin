@@ -70,4 +70,10 @@ class RepositoryService(
 
         return gitUtil.getAllCommits(git)
     }
+
+    fun getCommitDiff(username: String, repoName: String, branchName: String, commitHash: String): List<CommitDiff> {
+        val git = gitUtil.openRepository(username, repoName)
+
+        return gitUtil.diffCommits(git, commitHash)
+    }
 }

@@ -7,9 +7,11 @@ import org.eclipse.jgit.diff.DiffFormatter
 import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.ObjectId
 import org.eclipse.jgit.lib.Repository
+import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.treewalk.AbstractTreeIterator
 import org.eclipse.jgit.treewalk.CanonicalTreeParser
+import org.eclipse.jgit.treewalk.EmptyTreeIterator
 import org.eclipse.jgit.treewalk.TreeWalk
 import org.eclipse.jgit.treewalk.filter.PathFilter
 import org.springframework.stereotype.Component
@@ -53,11 +55,9 @@ open class JGitUtil {
         }
     }
 
-    fun diffCommits(repository: Repository, oldSha: String, newSha: String): List<CommitDiff> {
-        val oldTreeParser = prepareTreeParser(repository, oldSha)
-        val newTreeParser = prepareTreeParser(repository, newSha)
-
-        val git = Git(repository)
+    fun diffCommits(git: Git, commitSha: String): List<CommitDiff> {
+        val repository = git.repository
+        val (oldTreeParser, newTreeParser) = prepareTreeParser(repository, commitSha)
 
         val out = ByteArrayOutputStream()
         val df = DiffFormatter(out)
@@ -209,19 +209,29 @@ open class JGitUtil {
                 .call()
     }
 
-    private fun prepareTreeParser(repository: Repository, objectId: String): AbstractTreeIterator {
+    private fun prepareTreeParser(repository: Repository, objectId: String): Pair<AbstractTreeIterator, AbstractTreeIterator> {
+        fun getTreeParser(commit: RevCommit, walk: RevWalk): AbstractTreeIterator {
+            val tree = walk.parseTree(commit.tree.id)
+
+            val parser = CanonicalTreeParser()
+            val reader = repository.newObjectReader()
+            parser.reset(reader, tree.id)
+
+            walk.dispose()
+
+            return parser
+        }
+
         val walk = RevWalk(repository)
-
         val commit = walk.parseCommit(ObjectId.fromString(objectId))
-        val tree = walk.parseTree(commit.tree.id)
 
-        val treeParser = CanonicalTreeParser()
-        val reader = repository.newObjectReader()
-        treeParser.reset(reader, tree.id)
+        val oldTreeParser = if (commit.parentCount > 0)
+            getTreeParser(walk.parseCommit(commit.getParent(0).id), walk) else
+            EmptyTreeIterator()
 
-        walk.dispose()
+        val newTreeParser = getTreeParser(commit, walk)
 
-        return treeParser
+        return Pair(oldTreeParser, newTreeParser)
     }
 }
 
