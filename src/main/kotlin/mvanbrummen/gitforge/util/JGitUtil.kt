@@ -216,6 +216,8 @@ open class JGitUtil {
     }
 
     fun countContributors(git: Git): Int {
+        if (isRepositoryClean(git.repository)) return 0
+
         val revCommits = git.log().all().call()
 
         return revCommits.distinctBy { it.committerIdent.emailAddress }.count()
