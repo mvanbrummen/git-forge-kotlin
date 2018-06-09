@@ -107,7 +107,7 @@
                         </figure>
                         <p><a th:href="@{'commits/' + ${commit.commitHash}}" th:text="${commit.message}"></a></p>
                         <p> Authored by <span class='has-text-weight-semibold' th:text="${commit.committerName}"></span>
-                            <span th:text="${commit.commitTime}"></span></p>
+                            <span th:text="${commit.commitTimePretty}"></span></p>
                     </td>
                     <td>
                         <div class="field has-addons is-pulled-right">

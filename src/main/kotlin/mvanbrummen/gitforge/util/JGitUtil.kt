@@ -1,5 +1,6 @@
 package mvanbrummen.gitforge.util
 
+import mvanbrummen.gitforge.util.DateFormatter.formatUnixTimestamp
 import mvanbrummen.gitforge.util.FileUtil.gitDir
 import mvanbrummen.gitforge.util.FileUtil.repositoryDir
 import org.eclipse.jgit.api.Git
@@ -50,6 +51,7 @@ open class JGitUtil {
                     it.committerIdent.name,
                     it.shortMessage,
                     it.commitTime,
+                    formatUnixTimestamp(it.commitTime),
                     it.parents.map { it.name }
             )
         }
@@ -85,6 +87,7 @@ open class JGitUtil {
                     it.committerIdent.name,
                     it.shortMessage,
                     it.commitTime,
+                    formatUnixTimestamp(it.commitTime),
                     it.parents.map { it.name }
             )
         }
@@ -257,6 +260,7 @@ data class Commit(
         val committerName: String,
         val message: String,
         val commitTime: Int,
+        val commitTimePretty: String,
         val parents: List<String>
 )
 
