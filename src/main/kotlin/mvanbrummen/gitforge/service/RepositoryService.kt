@@ -68,7 +68,10 @@ class RepositoryService(
     fun listCommits(username: String, repoName: String, branchName: String): List<Commit> {
         val git = gitUtil.openRepository(username, repoName)
 
-        return gitUtil.getAllCommits(git)
+        return gitUtil.getAllCommits(git).map {
+            it.copy(committerName = userRepository.getUserByEmailAddress(it.committerEmail)?.username
+                    ?: it.committerName)
+        }
     }
 
     fun getCommitDiff(username: String, repoName: String, branchName: String, commitHash: String): List<CommitDiff> {

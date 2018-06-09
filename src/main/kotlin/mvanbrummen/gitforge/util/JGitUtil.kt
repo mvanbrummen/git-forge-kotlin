@@ -49,6 +49,7 @@ open class JGitUtil {
             Commit(
                     it.name,
                     it.committerIdent.name,
+                    it.committerIdent.emailAddress,
                     it.shortMessage,
                     it.commitTime,
                     formatUnixTimestamp(it.commitTime),
@@ -85,6 +86,7 @@ open class JGitUtil {
             Commit(
                     it.name,
                     it.committerIdent.name,
+                    it.committerIdent.emailAddress,
                     it.shortMessage,
                     it.commitTime,
                     formatUnixTimestamp(it.commitTime),
@@ -258,6 +260,7 @@ data class Tag(val fullName: String, val name: String, val refId: String)
 data class Commit(
         val commitHash: String,
         val committerName: String,
+        val committerEmail: String,
         val message: String,
         val commitTime: Int,
         val commitTimePretty: String,

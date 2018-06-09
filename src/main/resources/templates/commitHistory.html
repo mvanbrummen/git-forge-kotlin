@@ -106,7 +106,7 @@
                                  alt="avatar.png"/>
                         </figure>
                         <p><a th:href="@{'commits/' + ${commit.commitHash}}" th:text="${commit.message}"></a></p>
-                        <p> Authored by <span class='has-text-weight-semibold' th:text="${commit.committerName}"></span>
+                        <p> Authored by <a href="#" class='has-text-weight-semibold has-text-dark' th:text="${commit.committerName}"></a>
                             <span th:text="${commit.commitTimePretty}"></span></p>
                     </td>
                     <td>

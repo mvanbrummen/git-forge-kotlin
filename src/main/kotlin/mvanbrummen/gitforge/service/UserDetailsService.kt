@@ -1,6 +1,7 @@
 package mvanbrummen.gitforge.service
 
 import mvanbrummen.gitforge.repository.UserRepository
+import org.jooq.generated.tables.pojos.Account
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
@@ -21,6 +22,8 @@ class UserService(
         return User(user.username, user.password, listOf(GrantedAuthority { "USER" }))
     }
 
+    fun getUserByEmailAddress(emailAddress: String): Account? = userRepository.getUserByEmailAddress(emailAddress)
+    
     fun createUser(username: String, emailAddress: String, password: String): User {
         userRepository.saveUser(UUID.randomUUID(), username, emailAddress,
                 passwordEncoder.encode(password))

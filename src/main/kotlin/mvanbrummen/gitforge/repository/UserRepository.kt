@@ -17,6 +17,13 @@ class UserRepository(private val dsl: DSLContext) {
                 .fetchOneInto(Account::class.java)
     }
 
+    fun getUserByEmailAddress(emailAddress: String): Account? {
+        return dsl.select()
+                .from(ACCOUNT)
+                .where(ACCOUNT.EMAIL_ADDRESS.eq(emailAddress))
+                .fetchOneInto(Account::class.java)
+    }
+
     fun saveUser(id: UUID, username: String, emailAddress: String, password: String): Int {
         return dsl.insertInto(ACCOUNT).values(id, username, emailAddress, password)
                 .execute()
