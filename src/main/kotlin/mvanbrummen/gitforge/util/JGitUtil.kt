@@ -32,12 +32,13 @@ open class JGitUtil {
         val dirContents = listDirectory(repository)
         val commits = getAllCommits(git)
         val totalCommits = commits.size
+        val contributors = countContributors(git)
         val lastCommit = if (commits.isEmpty()) null else commits.first()
         val branches = listBranches(git)
         val tags = listTags(git)
         val readme = getReadmeContents(repository)
 
-        return GitRepositorySummary(isClean, branches, tags, totalCommits, lastCommit, dirContents, readme)
+        return GitRepositorySummary(isClean, branches, tags, totalCommits, contributors, lastCommit, dirContents, readme)
     }
 
     fun getAllCommits(git: Git): List<Commit> {
@@ -214,6 +215,12 @@ open class JGitUtil {
                 .call()
     }
 
+    fun countContributors(git: Git): Int {
+        val revCommits = git.log().all().call()
+
+        return revCommits.distinctBy { it.committerIdent.emailAddress }.count()
+    }
+
     private fun prepareTreeParser(repository: Repository, objectId: String): Pair<AbstractTreeIterator, AbstractTreeIterator> {
         fun getTreeParser(commit: RevCommit, walk: RevWalk): AbstractTreeIterator {
             val tree = walk.parseTree(commit.tree.id)
@@ -245,6 +252,7 @@ data class GitRepositorySummary(
         val branches: List<Branch>,
         val tags: List<Tag>,
         val totalCommits: Int,
+        val totalContributors: Int,
         val lastCommit: Commit?,
         val items: List<GitDirectoryItem>,
         val readme: String?
