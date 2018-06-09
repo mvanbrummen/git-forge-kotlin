@@ -90,40 +90,44 @@
 
 
             <table class="table is-fullwidth">
-                <thead>
-                <tr>
-                    <th>12 May, 2018 6 commits</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
+                <div th:remove="tag" th:each="element : ${commits}">
+                    <thead>
+                    <tr>
+                        <th th:text="${element.key}"></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
+                    <tr th:each="commit : ${element.value}">
+                        <td>
+                            <figure class="image is-32x32 is-pulled-left table-avatar">
+                                <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
+                                     alt="avatar.png"/>
+                            </figure>
+                            <p><a th:href="@{'commits/' + ${commit.commitHash}}" th:text="${commit.message}"></a></p>
+                            <p> Authored by <a href="#" class='has-text-weight-semibold has-text-dark'
+                                               th:text="${commit.committerName}"></a>
+                                <span th:text="${commit.commitTimePretty}"></span></p>
+                        </td>
+                        <td>
+                            <div class="field has-addons is-pulled-right">
+                                <div class="control">
+                                    <input class="input commit-hash-input" type="text" readOnly
+                                           th:value="${commit.commitHash}"/>
 
-                <tr th:each="commit : ${commits}">
-                    <td>
-                        <figure class="image is-32x32 is-pulled-left table-avatar">
-                            <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c03d50?d=identicon"
-                                 alt="avatar.png"/>
-                        </figure>
-                        <p><a th:href="@{'commits/' + ${commit.commitHash}}" th:text="${commit.message}"></a></p>
-                        <p> Authored by <a href="#" class='has-text-weight-semibold has-text-dark' th:text="${commit.committerName}"></a>
-                            <span th:text="${commit.commitTimePretty}"></span></p>
-                    </td>
-                    <td>
-                        <div class="field has-addons is-pulled-right">
-                            <div class="control">
-                                <input class="input commit-hash-input" type="text" readOnly th:value="${commit.commitHash}"/>
-
+                                </div>
+                                <div class="control">
+                                    <button class="button"><i class="fa fa-paste"></i></button>
+                                </div>
                             </div>
-                            <div class="control">
-                                <button class="button"><i class="fa fa-paste"></i></button>
-                            </div>
-                        </div>
-                        <input type='hidden'/>
-                    </td>
-                </tr>
+                            <input type='hidden'/>
+                        </td>
+                    </tr>
 
-                </tbody>
+                    </tbody>
+                </div>
+
             </table>
 
 

@@ -4,6 +4,7 @@ import mvanbrummen.gitforge.api.RepositorySummary
 import mvanbrummen.gitforge.repository.RepositoryRepository
 import mvanbrummen.gitforge.repository.UserRepository
 import mvanbrummen.gitforge.util.*
+import mvanbrummen.gitforge.util.DateFormatter.formatUnixTimestamp
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
 import java.util.*
@@ -65,13 +66,20 @@ class RepositoryService(
         gitUtil.createBranch(git, branchName, from)
     }
 
-    fun listCommits(username: String, repoName: String, branchName: String): List<Commit> {
+    fun listCommits(username: String, repoName: String, branchName: String): Map<String, List<Commit>> {
         val git = gitUtil.openRepository(username, repoName)
 
-        return gitUtil.getAllCommits(git).map {
-            it.copy(committerName = userRepository.getUserByEmailAddress(it.committerEmail)?.username
-                    ?: it.committerName)
-        }
+        val commits = gitUtil.getAllCommits(git)
+
+        val usernameMap = commits
+                .distinctBy { it.committerName }
+                .map {
+                    it.committerName to userRepository.getUserByEmailAddress(it.committerEmail)?.username
+                }.toMap()
+
+        return commits
+                .map { it.copy(committerName = usernameMap[it.committerName] ?: it.committerName) }
+                .groupBy { formatUnixTimestamp(it.commitTime) }
     }
 
     fun getCommitDiff(username: String, repoName: String, branchName: String, commitHash: String): List<CommitDiff> {

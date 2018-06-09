@@ -1,6 +1,6 @@
 package mvanbrummen.gitforge.util
 
-import mvanbrummen.gitforge.util.DateFormatter.formatUnixTimestamp
+import mvanbrummen.gitforge.util.DateFormatter.formatUnixTimestampPretty
 import mvanbrummen.gitforge.util.FileUtil.gitDir
 import mvanbrummen.gitforge.util.FileUtil.repositoryDir
 import org.eclipse.jgit.api.Git
@@ -52,7 +52,7 @@ open class JGitUtil {
                     it.committerIdent.emailAddress,
                     it.shortMessage,
                     it.commitTime,
-                    formatUnixTimestamp(it.commitTime),
+                    formatUnixTimestampPretty(it.commitTime),
                     it.parents.map { it.name }
             )
         }
@@ -89,7 +89,7 @@ open class JGitUtil {
                     it.committerIdent.emailAddress,
                     it.shortMessage,
                     it.commitTime,
-                    formatUnixTimestamp(it.commitTime),
+                    formatUnixTimestampPretty(it.commitTime),
                     it.parents.map { it.name }
             )
         }
