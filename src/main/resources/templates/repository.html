@@ -323,15 +323,13 @@
                 <table class="table is-fullwidth table-hoverable">
                     <thead>
                     <tr>
-                        <th>
+                        <th colspan="3">
                             <p class="has-text-grey">
                                 <span th:text="*{repoSummary.lastCommit?.commitHash}"></span> <span
                                     th:text="*{repoSummary.lastCommit?.message}"></span> authored by <span
                                     th:text="*{repoSummary.lastCommit?.committerName}"></span>
                             </p>
                         </th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
