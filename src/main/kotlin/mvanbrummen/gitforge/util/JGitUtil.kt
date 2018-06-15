@@ -49,6 +49,7 @@ open class JGitUtil {
         return revCommits.map {
             Commit(
                     it.name,
+                    it.name.take(8),
                     it.committerIdent.name,
                     it.committerIdent.emailAddress,
                     it.shortMessage,
@@ -75,7 +76,8 @@ open class JGitUtil {
         }
     }
 
-    fun getAllCommitsByRef(repository: Repository, ref: String): List<Commit> {
+    fun getAllCommitsByRef(git: Git, ref: String): List<Commit> {
+        val repository = git.repository
         if (isRepositoryClean(repository)) return listOf()
 
         val branchName = "refs/heads/$ref"
@@ -86,6 +88,7 @@ open class JGitUtil {
         return revCommits.map {
             Commit(
                     it.name,
+                    it.name.take(8),
                     it.committerIdent.name,
                     it.committerIdent.emailAddress,
                     it.shortMessage,
@@ -269,6 +272,7 @@ data class Tag(val fullName: String, val name: String, val refId: String)
 
 data class Commit(
         val commitHash: String,
+        val commitHashShort: String,
         val committerName: String,
         val committerEmail: String,
         val message: String,

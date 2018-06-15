@@ -25,7 +25,8 @@
                 <div class="column">
                     <nav class="breadcrumb" aria-label="breadcrumbs">
                         <ul>
-                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span th:text="${accountName}"></span></strong></a></li>
+                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span
+                                    th:text="${accountName}"></span></strong></a></li>
                             <li><a href="#"><strong th:text="${repoName}"></strong></a></li>
                         </ul>
                     </nav>
@@ -119,7 +120,8 @@
                         <h5 class="has-text-grey title is-size-6">New Repository</h5>
                         <pre>
                 <code>
-                    <p>git clone git@gitlab.com:<span sec:authentication="name"></span>/<span th:text="${repoName}"></span>.git</p>
+                    <p>git clone git@gitlab.com:<span sec:authentication="name"></span>/<span
+                            th:text="${repoName}"></span>.git</p>
                     <p>cd test</p>
                     <p>touch README.md</p>
                     <p>git add README.md</p>
@@ -135,7 +137,8 @@
                 <code>
                     <p>cd existing_folder</p>
                     <p>git init</p>
-                    <p>git remote add origin git@gitlab.com:<span sec:authentication="name"></span>/<span th:text="${repoName}"></span>.git</p>
+                    <p>git remote add origin git@gitlab.com:<span sec:authentication="name"></span>/<span
+                            th:text="${repoName}"></span>.git</p>
                     <p>git add .</p>
                     <p>git commit -m "Initial commit"</p>
                     <p>git push -u origin master</p>
@@ -153,7 +156,8 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-clock" aria-hidden="true"></i>
-                                    <a th:href="@{${repoName} + '/master' + '/commits'}"><span class="has-text-weight-bold">Commits</span> <span
+                                    <a th:href="@{${repoName} + '/master' + '/commits'}"><span
+                                            class="has-text-weight-bold">Commits</span> <span
                                             th:text="*{repoSummary.totalCommits}"></span></a>
                                 </p>
                             </div>
@@ -161,15 +165,19 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-code-branch" aria-hidden="true"></i>
-                                    <a th:href="@{${repoName} + '/branch'}"> <span class="has-text-weight-bold">Branches</span> <span
+                                    <a th:href="@{${repoName} + '/branch'}"> <span
+                                            class="has-text-weight-bold">Branches</span> <span
                                             th:text="*{#lists.size(repoSummary.branches)}"></span></a>
                                 </p>
                             </div>
                         </div>
                         <div class="level-item has-text-centered">
                             <div>
-                                <a th:href="@{${repoName} + '/contributors'}" class="heading"><i class="fa fa-users" aria-hidden="true"></i> <span
-                                        class="has-text-weight-bold">Contributors</span> <span th:text="*{repoSummary.totalContributors}"></span></a>
+                                <a th:href="@{${repoName} + '/contributors'}" class="heading"><i class="fa fa-users"
+                                                                                                 aria-hidden="true"></i>
+                                    <span
+                                            class="has-text-weight-bold">Contributors</span> <span
+                                            th:text="*{repoSummary.totalContributors}"></span></a>
                             </div>
                         </div>
                         <div class="level-item has-text-centered">
@@ -257,7 +265,8 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <a th:href="@{${repoName} + '/branch/create'}" class="dropdown-item">New Branch</a>
+                                        <a th:href="@{${repoName} + '/branch/create'}" class="dropdown-item">New
+                                            Branch</a>
                                     </div>
                                     <div class="dropdown-content">
                                         <a href="#" class="dropdown-item">New Tag</a>
@@ -307,7 +316,8 @@
                                 </p>
                                 <p class="control">
                                     <input class="input" type="text"
-                                           th:value="${'http://gitforge.com/' + accountName + '/' + repoName}" readonly/>
+                                           th:value="${'http://gitforge.com/' + accountName + '/' + repoName}"
+                                           readonly/>
                                 </p>
                                 <p class="control">
                                     <button class="button">
@@ -325,9 +335,10 @@
                     <tr>
                         <th colspan="3">
                             <p class="has-text-grey">
-                                <span th:text="*{repoSummary.lastCommit?.commitHash}"></span> <span
-                                    th:text="*{repoSummary.lastCommit?.message}"></span> authored by <span
-                                    th:text="*{repoSummary.lastCommit?.committerName}"></span>
+                                <a th:href="@{${repoName} + '/master/commits/' + *{repoSummary.lastCommit?.commitHash}}"><span
+                                        th:text="*{repoSummary.lastCommit?.commitHashShort}"></span></a> <span
+                                    th:text="*{repoSummary.lastCommit?.message}"></span> authored by <a href="#"><span
+                                    th:text="*{repoSummary.lastCommit?.committerName}"></span></a>
                             </p>
                         </th>
                     </tr>
