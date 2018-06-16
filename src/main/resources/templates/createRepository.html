@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
 
 <body>
 
-<header th:replace="fragments/navbar.html :: navbar"> </header>
+<header th:replace="fragments/navbar.html :: navbar"></header>
 
 <div class="container">
     <div class="columns">
@@ -34,11 +34,12 @@
                                 <div class="field has-addons">
                                     <p class="control">
                                         <a class="button is-static">
-                                            mvanbrummen /
+                                            <span sec:authentication="name"></span> &nbsp;/
                                         </a>
                                     </p>
                                     <p class="control is-expanded">
-                                        <input th:field="*{name}" name="repoName" class="input" placeholder="my-awesome-project"/>
+                                        <input th:field="*{name}" name="repoName" class="input"
+                                               placeholder="my-awesome-project"/>
                                     </p>
                                 </div>
                                 <p class="help"></p>
@@ -91,7 +92,7 @@
 
                 </form>
 
-                <hr />
+                <hr/>
             </div>
 
 
