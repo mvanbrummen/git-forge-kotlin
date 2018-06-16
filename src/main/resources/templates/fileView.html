@@ -24,12 +24,12 @@
 
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span th:text="${accountName}"></span></strong></a></li>
+                    <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
                     </li>
 
                     <span th:remove="tag" th:each="entry : ${pathSegmentMap}">
-                          <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${entry.value}}"><strong th:text="${entry.key}"></strong></a></li>
+                          <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/blob/' + ${entry.value}}"><strong th:text="${entry.key}"></strong></a></li>
                     </span>
                 </ul>
             </nav>

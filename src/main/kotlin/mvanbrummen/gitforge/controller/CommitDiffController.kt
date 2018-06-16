@@ -18,6 +18,7 @@ class CommitDiffController(
     fun commitDiffPage(@PathVariable accountName: String, @PathVariable repoName: String,
                        @PathVariable branch: String, @PathVariable commitHash: String,
                        model: Model, principal: Principal): String {
+        model.addAttribute("accountName", accountName)
         model.addAttribute("repoName", repoName)
         model.addAttribute("branches", branchService.listBranches(accountName, repoName))
         model.addAttribute("branch", branch)

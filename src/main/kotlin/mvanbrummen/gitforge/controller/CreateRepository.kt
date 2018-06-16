@@ -6,6 +6,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
+import java.security.Principal
 
 @Controller
 class CreateRepository(private val repositoryService: RepositoryService) {
@@ -19,17 +20,17 @@ class CreateRepository(private val repositoryService: RepositoryService) {
 
     @PostMapping("/repo/new")
     fun createNewRepository(@ModelAttribute newRepositoryForm: CreateRepositoryForm,
-                            model: Model): String {
+                            model: Model, principal: Principal): String {
         with(newRepositoryForm) {
             repositoryService.saveRepository(
-                    "mvanbrummen",
+                    principal.name,
                     name ?: "",
                     description ?: "",
                     false
             )
         }
 
-        return "redirect:/repo/mvanbrummen/${newRepositoryForm.name}"
+        return "redirect:/repo/${principal.name}/${newRepositoryForm.name}"
     }
 }
 

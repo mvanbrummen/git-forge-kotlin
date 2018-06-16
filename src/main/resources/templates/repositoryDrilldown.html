@@ -23,12 +23,15 @@
 
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span
+                            th:text="${accountName}"></span></strong></a></li>
+                    <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName}}"><strong
+                            th:text="${repoName}"></strong></a>
                     </li>
 
                     <span th:remove="tag" th:each="entry : ${pathSegmentMap}">
-                          <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${entry.value}}"><strong th:text="${entry.key}"></strong></a></li>
+                          <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/blob/' + ${entry.value}}"><strong
+                                  th:text="${entry.key}"></strong></a></li>
                     </span>
                 </ul>
             </nav>
@@ -56,7 +59,7 @@
                 <tr th:each="item : ${items}">
                     <td>
                         <i th:classappend="${item.isDir() ? 'fa fa-folder' : 'far fa-file-code'}"></i>
-                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName} + '/blob/' + ${filePath} + '/' + ${item.path}}"
+                        <a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/blob/' + ${filePath} + '/' + ${item.path}}"
                            th:text="${item.path}"></a>
                     </td>
                     <td class="has-text-right has-text-grey">init commit</td>

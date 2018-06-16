@@ -15,7 +15,7 @@
 
 <body>
 
-<header th:replace="fragments/navbar.html :: navbar"> </header>
+<header th:replace="fragments/navbar.html :: navbar"></header>
 
 <div class="container">
     <div class="columns">
@@ -25,8 +25,10 @@
                 <div class="column">
                     <nav class="breadcrumb" aria-label="breadcrumbs">
                         <ul>
-                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                            <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a></li>
+                            <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span
+                                    th:text="${accountName}"></span></strong></a></li>
+                            <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName}}"><strong
+                                    th:text="${repoName}"></strong></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -76,7 +78,7 @@
             <div class="tabs is-boxed">
                 <ul>
                     <li>
-                        <a th:href="@{'/repo/mvanbrummen/' + ${repoName}}">
+                        <a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName}}">
                             <span class="icon is-small"><i class="fa fa-code"></i></span>
                             <span>Code</span>
                         </a>
@@ -92,7 +94,8 @@
 
 
             <div class="box">
-                <form th:action="@{'/repo/mvanbrummen/' + ${repoName}}" th:object="${deleteRepoForm}" method="post">
+                <form th:action="@{'/repo/' + ${accountName} + '/' + ${repoName}}" th:object="${deleteRepoForm}"
+                      method="post">
                     <div class="field">
                         <label class="label">Delete Repository</label>
                         <p class="help">Type the name of the repository to delete</p>

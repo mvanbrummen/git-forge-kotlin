@@ -18,7 +18,7 @@
             <h3 class="has-text-grey-dark title is-size-5">Create a new branch</h3>
             <hr/>
             <form th:object="${newBranchForm}"
-                  th:action="@{'/repo/mvanbrummen/' + ${repoName} + '/branch/create'}"
+                  th:action="@{'/repo/' + ${accountName} + '/' + ${repoName} + '/branch/create'}"
                   method="post">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -59,7 +59,7 @@
                                     </button>
                                 </div>
                                 <div class="control">
-                                    <a th:href="@{'/repo/mvanbrummen/' + ${repoName}}" class="button">
+                                    <a th:href="@{'/repo/' + ${accountName} +  '/' + ${repoName}}" class="button">
                                         Cancel
                                     </a>
                                 </div>

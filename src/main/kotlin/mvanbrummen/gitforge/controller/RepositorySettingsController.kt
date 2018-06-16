@@ -16,6 +16,7 @@ class RepositorySettingsController(private val repositoryService: RepositoryServ
     fun repoSettingsPage(@PathVariable accountName: String, @PathVariable repoName: String,
                          model: Model): String {
         model.addAttribute("repoName", repoName)
+        model.addAttribute("accountName", accountName)
         model.addAttribute("deleteRepoForm", DeleteRepoForm())
         return "repositorySettings"
     }

@@ -13,6 +13,7 @@ class BranchController(private val branchService: BranchService) {
 
     @GetMapping("/repo/{accountName}/{repoName}/branch/create")
     fun createBranchPage(@PathVariable accountName: String, @PathVariable repoName: String, model: Model): String {
+        model.addAttribute("accountName", accountName)
         model.addAttribute("repoName", repoName)
         model.addAttribute("newBranchForm", NewBranchForm())
         model.addAttribute("branches", branchService.listBranches(accountName, repoName))
@@ -31,6 +32,7 @@ class BranchController(private val branchService: BranchService) {
     @GetMapping("/repo/{accountName}/{repoName}/branch")
     fun branchPage(@PathVariable accountName: String, @PathVariable repoName: String, model: Model): String {
         model.addAttribute("repoName", repoName)
+        model.addAttribute("accountName", accountName)
         model.addAttribute("branches", branchService.listBranches(accountName, repoName))
         return "branch"
     }

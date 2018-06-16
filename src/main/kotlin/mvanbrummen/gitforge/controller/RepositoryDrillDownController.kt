@@ -25,6 +25,7 @@ class RepositoryDrillDownController(private val repositoryService: RepositorySer
 
         model.addAttribute("filePath", filePath)
         model.addAttribute("repoName", repoName)
+        model.addAttribute("accountName", accountName)
         model.addAttribute("pathSegmentMap", pathSegmentMap)
 
         return if (items.isEmpty()) {

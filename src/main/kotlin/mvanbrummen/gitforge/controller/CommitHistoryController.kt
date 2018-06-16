@@ -17,6 +17,7 @@ class CommitHistoryController(
     @GetMapping("/repo/{accountName}/{repoName}/{branch}/commits")
     fun commitHistoryPage(@PathVariable accountName: String, @PathVariable repoName: String,
                           @PathVariable branch: String, model: Model, principal: Principal): String {
+        model.addAttribute("accountName", accountName)
         model.addAttribute("repoName", repoName)
         model.addAttribute("branches", branchService.listBranches(accountName, repoName))
         model.addAttribute("tags", repositoryService.listTags(accountName, repoName))

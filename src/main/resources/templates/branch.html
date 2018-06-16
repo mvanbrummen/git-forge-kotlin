@@ -18,8 +18,10 @@
 
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
-                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;mvanbrummen</strong></a></li>
-                    <li><a th:href="@{'/repo/mvanbrummen/' + ${repoName}}"><strong th:text="${repoName}"></strong></a>
+                    <li><i class="fa fa-book"></i><a href="/"><strong>&nbsp;<span
+                            th:text="${accountName}"></span></strong></a></li>
+                    <li><a th:href="@{'/repo/' + ${accountName} + '/' + ${repoName}}"><strong
+                            th:text="${repoName}"></strong></a>
                     </li>
                     <li><a href="#"><strong>Branches</strong></a></li>
                 </ul>
@@ -68,7 +70,8 @@
                         </td>
                         <td>
                             <div class="is-pulled-right">
-                                <button class="button" type="submit" onclick=""><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button class="button" type="submit" onclick=""><i class="fa fa-trash"
+                                                                                   aria-hidden="true"></i></button>
                             </div>
                         </td>
                     </form>
