@@ -49,26 +49,31 @@
                 </thead>
                 <tbody>
 
-                <tr th:each="branch : ${branches}">
-                    <td>
-                        <p>
-                            <i class="fa fa-code-fork" aria-hidden="true"></i>
-                            <a href="#" th:text="${branch.name}"> </a>
 
-                            <span class="tag is-rounded is-success">default</span>
-                            <span class="tag is-rounded is-dark">protected</span>
-                        </p>
-                        <p class="has-text-grey">
-                            <i class="fa fa-code-fork" aria-hidden="true"></i>
-                            <a href="#" class="has-text-grey"> 1e8b9da3</a> · Last commit message · a day ago
-                        </p>
-                    </td>
-                    <td>
-                        <div class="is-pulled-right">
-                            <button class="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        </div>
-                    </td>
+                <tr th:each="branch : ${branches}">
+                    <form method="post" name='f' th:action="@{'branch/' + ${branch.name}}"
+                          onsubmit="return confirm('Do you really want to delete branch?');">
+                        <td>
+                            <p>
+                                <i class="fa fa-code-fork" aria-hidden="true"></i>
+                                <a href="#" th:text="${branch.name}"> </a>
+
+                                <span class="tag is-rounded is-success">default</span>
+                                <span class="tag is-rounded is-dark">protected</span>
+                            </p>
+                            <p class="has-text-grey">
+                                <i class="fa fa-code-fork" aria-hidden="true"></i>
+                                <a href="#" class="has-text-grey"> 1e8b9da3</a> · Last commit message · a day ago
+                            </p>
+                        </td>
+                        <td>
+                            <div class="is-pulled-right">
+                                <button class="button" type="submit" onclick=""><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </td>
+                    </form>
                 </tr>
+
 
                 </tbody>
             </table>
@@ -78,5 +83,6 @@
 </div>
 
 </body>
+
 
 </html>

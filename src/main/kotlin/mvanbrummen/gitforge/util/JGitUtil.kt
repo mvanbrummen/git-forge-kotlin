@@ -211,12 +211,15 @@ open class JGitUtil {
         return contents
     }
 
-    fun createBranch(git: Git, name: String, from: String) {
-        git.branchCreate()
-                .setStartPoint(from)
-                .setName(name)
-                .call()
-    }
+    fun createBranch(git: Git, name: String, from: String) = git.branchCreate()
+            .setStartPoint(from)
+            .setName(name)
+            .call()
+
+
+    fun deleteBranch(git: Git, name: String) = git.branchDelete()
+            .setBranchNames(name)
+            .call()
 
     fun countContributors(git: Git): Int {
         if (isRepositoryClean(git.repository)) return 0
