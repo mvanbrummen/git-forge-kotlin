@@ -25,7 +25,9 @@ class UserRepository(private val dsl: DSLContext) {
     }
 
     fun saveUser(id: UUID, username: String, emailAddress: String, password: String): Int {
-        return dsl.insertInto(ACCOUNT).values(id, username, emailAddress, password)
+        return dsl.insertInto(ACCOUNT)
+                .columns(ACCOUNT.ID, ACCOUNT.USERNAME, ACCOUNT.EMAIL_ADDRESS, ACCOUNT.PASSWORD)
+                .values(id, username, emailAddress, password)
                 .execute()
     }
 }

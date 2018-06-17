@@ -92,7 +92,7 @@
                 </ul>
             </div>
 
-            <div class="notification" th:if="*{description != ''}">
+            <div class="notification" th:if="*{description != null}">
                 <h4 class="subtitle is-size-6" th:text="*{description}">
 
                 </h4>
