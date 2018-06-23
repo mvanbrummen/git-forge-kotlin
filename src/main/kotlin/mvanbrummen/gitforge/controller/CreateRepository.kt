@@ -26,7 +26,7 @@ class CreateRepository(private val repositoryService: RepositoryService) {
                     principal.name,
                     name ?: "",
                     description ?: "",
-                    false
+                    private ?: false
             )
         }
 
@@ -36,4 +36,5 @@ class CreateRepository(private val repositoryService: RepositoryService) {
 
 data class CreateRepositoryForm(
         val name: String? = null,
-        val description: String? = null)
+        val description: String? = null,
+        var private: Boolean? = null)

@@ -63,16 +63,10 @@
                         </div>
                         <div class="field-body">
                             <div class="field is-narrow">
-                                <div class="control">
-                                    <label class="radio">
-                                        <input type="radio" name="member"/>
-                                        <span class="has-text-grey"> Public</span> <i class="fa fa-globe"></i>
-                                    </label>
-                                    <label class="radio">
-                                        <input type="radio" name="member"/>
-                                        <span class="has-text-grey"> Private</span> <i class="fa fa-lock"></i>
-                                    </label>
-                                </div>
+                                <label class="checkbox">
+                                    <input th:field="*{private}" name="private" type="checkbox">
+                                    is private
+                                </label>
                             </div>
                         </div>
                     </div>

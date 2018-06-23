@@ -28,7 +28,8 @@ class RepositoryRepository(private val dsl: DSLContext) {
 
     fun saveRepository(repository: Repository): Int {
         return dsl.insertInto(REPOSITORY)
-                .values(repository.id, repository.accountId, repository.name, repository.description)
+                .columns(REPOSITORY.ID, REPOSITORY.ACCOUNT_ID, REPOSITORY.NAME, REPOSITORY.DESCRIPTION, REPOSITORY.IS_PRIVATE)
+                .values(repository.id, repository.accountId, repository.name, repository.description, repository.isPrivate)
                 .execute()
     }
 
