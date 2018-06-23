@@ -2,10 +2,9 @@ package mvanbrummen.gitforge.ssh
 
 
 import org.apache.sshd.git.pack.GitPackCommandFactory
+import org.apache.sshd.server.auth.pubkey.PublickeyAuthenticator
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider
-import org.apache.sshd.server.session.ServerSession
 import org.slf4j.LoggerFactory
-import java.security.PublicKey
 
 class SshServer(val port: Int, val rootDir: String) {
     private val logger = LoggerFactory.getLogger(SshServer::class.java)
@@ -14,11 +13,10 @@ class SshServer(val port: Int, val rootDir: String) {
 
     private fun configure() {
         logger.info("Configuring SSH server...")
-        sshd.setPort(port)
-        sshd.setPublickeyAuthenticator({ username: String, key: PublicKey, session: ServerSession -> true }) // TODO implement
-        sshd.setKeyPairProvider(SimpleGeneratorHostKeyProvider())
-
-        sshd.setCommandFactory(GitPackCommandFactory(rootDir))
+        sshd.port = port
+        sshd.publickeyAuthenticator = PublickeyAuthenticator { s, publicKey, serverSession -> true }
+        sshd.keyPairProvider = SimpleGeneratorHostKeyProvider()
+        sshd.commandFactory = GitPackCommandFactory(rootDir)
     }
 
     fun start() {
