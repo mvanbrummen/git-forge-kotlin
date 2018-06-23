@@ -177,6 +177,7 @@
                     <url>${db.url}</url>
                     <user>${db.username}</user>
                     <password>${db.password}</password>
+                    <schemas>gitforge</schemas>
                     <locations>
                         <location>filesystem:src/main/resources/db/migration</location>
                     </locations>
