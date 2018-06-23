@@ -7,8 +7,6 @@ import mvanbrummen.gitforge.util.*
 import mvanbrummen.gitforge.util.DateFormatter.formatUnixTimestamp
 import org.jooq.generated.tables.pojos.Repository
 import org.springframework.stereotype.Service
-import java.sql.Timestamp
-import java.time.LocalDateTime
 import java.util.*
 
 @Service
@@ -28,9 +26,7 @@ class RepositoryService(
                 UUID.randomUUID(),
                 userRepository.getUser(username)?.id,
                 repoName,
-                description,
-                Timestamp.valueOf(LocalDateTime.now()),
-                isPrivate
+                description
         ))
     }
 
