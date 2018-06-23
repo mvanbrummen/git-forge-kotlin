@@ -17,6 +17,8 @@ class RepositoryService(
         private val userRepository: UserRepository,
         private val gitUtil: JGitUtil) {
 
+    fun findAllPublicRepositories() = repository.findAllPublicRepositories()
+
     fun findByRepositoriesByAccount(username: String): List<Repository> {
         return repository.findRepositoriesByAccount(username)
     }

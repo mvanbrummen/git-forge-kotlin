@@ -25,6 +25,13 @@ class RepositoryRepositoryTest {
     }
 
     @Test
+    fun `get all public repositories should return a list`() {
+        val res = repositoryRepository.findAllPublicRepositories()
+
+        assertThat(res).isNotEmpty
+    }
+
+    @Test
     fun `get account by unknown username should return empty list`() {
         val res = repositoryRepository.findRepositoriesByAccount("unknown")
 

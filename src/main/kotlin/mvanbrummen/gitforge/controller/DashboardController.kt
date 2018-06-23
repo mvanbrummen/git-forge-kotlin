@@ -15,4 +15,11 @@ class DashboardController(val repositoryService: RepositoryService) {
         model.addAttribute("username", principal.name)
         return "dashboard"
     }
+
+    @GetMapping("/explore")
+    fun explorePage(principal: Principal, model: Model): String {
+        model.addAttribute("repos", repositoryService.findAllPublicRepositories())
+        model.addAttribute("username", principal.name)
+        return "explore"
+    }
 }

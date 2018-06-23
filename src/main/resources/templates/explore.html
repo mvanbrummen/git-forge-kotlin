@@ -19,8 +19,8 @@
             <hr/>
             <div class="tabs is-boxed">
                 <ul>
-                    <li class="is-active"><a>My Projects</a></li>
-                    <li><a th:href="@{/explore}">Explore</a></li>
+                    <li><a th:href="@{/}">My Projects</a></li>
+                    <li class="is-active"><a>Explore</a></li>
                 </ul>
             </div>
 
@@ -30,11 +30,11 @@
                 <tr th:each="repo : ${repos}">
                     <td>
                         <i class="fa fa-book"></i>
-                        <a th:href="@{'/repo/' + ${username} + '/' + ${repo.name}}"> <strong th:text="${ username + ' / ' + repo.name }"></strong></a>
+                        <a th:href="@{'/repo/' + ${repo.username} + '/' + ${repo.name}}"> <strong th:text="${ repo.username + ' / ' + repo.name }"></strong></a>
                         <p class="has-text-grey-dark is-size-6" th:text="${repo.description}"></p>
                     </td>
                     <td class="has-text-right"><i class="fa fa-star"></i> <span class="is-size-7">899    </span>
-                        <i class="fa" th:classappend="${repo.isPrivate} ? 'fa-lock' : 'fa-globe'"></i>
+                        <i class="fa fa-globe"></i>
                         <p class="has-text-grey-dark is-size-7">modified today</p></td>
                 </tr>
                 </tbody>
