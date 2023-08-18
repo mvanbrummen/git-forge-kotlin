@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <kotlin.version>1.2.41</kotlin.version>
-        <apache.sshd.version>1.7.0</apache.sshd.version>
+        <apache.sshd.version>2.7.0</apache.sshd.version>
         <flyway.version>5.1.1</flyway.version>
 
         <db.url>jdbc:postgresql://localhost:5432/kgitforge</db.url>
